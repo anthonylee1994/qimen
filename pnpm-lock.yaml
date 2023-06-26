@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  lunar-typescript:
+    specifier: ^1.6.6
+    version: 1.6.6
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -3023,6 +3026,10 @@ packages:
     dependencies:
       yallist: 4.0.0
     dev: true
+
+  /lunar-typescript@1.6.6:
+    resolution: {integrity: sha512-GaiIcaPhjEqDPFFlVW7mQoigBYxDmMpPVj1qubSg2CyFIOhxS7sPLHZod18YrjompQ3v8BXV2jsvCKpN/DXnwA==}
+    dev: false
 
   /magic-string@0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}

@@ -1,7 +1,7 @@
-import {三奇六儀, 上中下元, 六儀, 局數, 旬首, 遁, 節氣, 六十甲子, 天干, 八神, 九星, 八門, 宮位} from "./type";
-import {三奇六儀序, 局數表, 旬首表, 節氣遁表, 轉盤轉飛星序, 六儀遁表, 飛星轉轉盤序, 上中下元表, 八神序, 九星序, 八門序, 宮位飛星序, 天干序, 宮位轉盤序} from "./dictionary";
+import {三奇六儀, 上中下元, 六儀, 局數, 旬首, 遁, 節氣, 六十甲子, 天干, 八神, 九星, 八門, 宮位, 地支} from "./type";
+import {三奇六儀序, 局數表, 旬首表, 節氣遁表, 轉盤轉飛星序, 六儀遁表, 飛星轉轉盤序, 上中下元表, 八神序, 九星序, 八門序, 宮位飛星序, 天干序, 宮位轉盤序, 空亡表, 驛馬表} from "./dictionary";
 
-const circularNumber = (num: number, min: number, max: number) => {
+const 循環數 = (num: number, min: number, max: number) => {
     const range = max - min + 1;
     const adjustedNum = num - min;
     const remainder = ((adjustedNum % range) + range) % range;
@@ -38,11 +38,19 @@ const 值符落宮 = (地盤干: 三奇六儀[], 遁干: 六儀, 時干: 天干)
     const 時干索引 = 地盤干轉盤序.findIndex(_ => _ === 時干);
     const 遁干索引 = 地盤干轉盤序.findIndex(_ => _ === 遁干);
 
-    const 值符九星: 九星 = 遁干索引 === -1 ? "天禽" : 九星序[circularNumber(遁干索引, 0, 7)];
+    const 值符九星: 九星 = 遁干索引 === -1 ? "天禽" : 九星序[循環數(遁干索引, 0, 7)];
     const 索引 = 時干 === "甲" ? 遁干索引 : 時干索引;
     const 值符宮位 = 索引 === -1 ? "中五宮" : 宮位轉盤序[索引];
 
     return [值符九星, 值符宮位];
+};
+
+const 空亡 = (旬首: 旬首): [地支, 地支] => {
+    return 空亡表[旬首];
+};
+
+const 驛馬 = (時支: 地支): 地支 => {
+    return Object.keys(驛馬表)[Object.values(驛馬表).findIndex(_ => _.includes(時支))] as 地支;
 };
 
 const 地盤干 = (遁: 遁, 局數: 局數): 三奇六儀[] => {
@@ -50,7 +58,7 @@ const 地盤干 = (遁: 遁, 局數: 局數): 三奇六儀[] => {
     const start = 局數 - 1;
 
     for (let i = 0; i < 9; i++) {
-        const index = circularNumber(start + i * (遁 === "陽遁" ? 1 : -1), 0, 8);
+        const index = 循環數(start + i * (遁 === "陽遁" ? 1 : -1), 0, 8);
         arr[index] = 三奇六儀序[i];
     }
 
@@ -76,7 +84,7 @@ const 天盤干 = (地盤干: 三奇六儀[], 遁干: 六儀, 時干: 天干): (
     const 時干索引 = 計算時干索引(地盤干, 遁干, 時干);
 
     for (let i = 0; i < 9; i++) {
-        result[circularNumber(時干索引 + i, 0, 7)] = 地盤干轉盤序[circularNumber(遁干索引 + i, 0, 7)];
+        result[循環數(時干索引 + i, 0, 7)] = 地盤干轉盤序[循環數(遁干索引 + i, 0, 7)];
     }
 
     // 轉回飛星序
@@ -89,9 +97,9 @@ const 八神 = (地盤干: 三奇六儀[], 遁: 遁, 遁干: 六儀, 時干: 天
 
     for (let i = 0; i < 8; i++) {
         if (遁 === "陽遁") {
-            result[circularNumber(時干索引 + i, 0, 7)] = 八神序[i];
+            result[循環數(時干索引 + i, 0, 7)] = 八神序[i];
         } else {
-            result[circularNumber(時干索引 - i, 0, 7)] = 八神序[i];
+            result[循環數(時干索引 - i, 0, 7)] = 八神序[i];
         }
     }
 
@@ -106,7 +114,7 @@ const 九星 = (地盤干: 三奇六儀[], 遁干: 六儀, 時干: 天干): (九
     const 時干索引 = 計算時干索引(地盤干, 遁干, 時干);
 
     for (let i = 0; i < 8; i++) {
-        arr[circularNumber(時干索引 + i, 0, 7)] = 九星序[circularNumber(遁干索引 + i, 0, 7)];
+        arr[循環數(時干索引 + i, 0, 7)] = 九星序[循環數(遁干索引 + i, 0, 7)];
     }
 
     // 轉回飛星序
@@ -122,13 +130,13 @@ const 值使門 = (地盤干: 三奇六儀[], 遁干: 六儀, 時干: 天干): [
     const 宮位數 = 遁干索引 === -1 ? 4 : 八門飛星序.indexOf(八門序[遁干索引]);
     const 八門 = 八門序[遁干索引 === -1 ? 5 : 遁干索引];
 
-    return [八門, 宮位飛星序[circularNumber(宮位數 + 天干序.indexOf(時干), 0, 8)]];
+    return [八門, 宮位飛星序[循環數(宮位數 + 天干序.indexOf(時干), 0, 8)]];
 };
 
 const 八門 = (值使門: 八門, 宮位: 宮位): (八門 | undefined)[] => {
     const arr: (八門 | undefined)[] = [];
     for (let i = 0; i < 8; i++) {
-        arr[circularNumber(i + 宮位轉盤序.indexOf(宮位 === "中五宮" ? "坤二宮" : 宮位), 0, 7)] = 八門序[circularNumber(i + 八門序.indexOf(值使門), 0, 7)];
+        arr[循環數(i + 宮位轉盤序.indexOf(宮位 === "中五宮" ? "坤二宮" : 宮位), 0, 7)] = 八門序[循環數(i + 八門序.indexOf(值使門), 0, 7)];
     }
 
     return 轉盤轉飛星序.map(_ => (_ ? arr[_ - 1] : undefined));
@@ -154,6 +162,8 @@ export const QimenUtil = Object.freeze({
     值使門,
     八門,
     天干測試,
+    空亡,
+    驛馬,
 });
 
 // calculate() {

@@ -88,6 +88,17 @@ describe("QimenUtil", () => {
 
     it("八神", () => {
         const 地盤干1: 三奇六儀[] = ["癸", "丁", "丙", "乙", "戊", "己", "庚", "辛", "壬"];
+        expect(QimenUtil.八神(地盤干1, "陽遁", "戊", "甲")).toEqual(["六合", "值符", "玄武", "九地", undefined, "太陰", "騰蛇", "白虎", "九天"]);
+        expect(QimenUtil.八神(地盤干1, "陽遁", "戊", "乙")).toEqual(["玄武", "太陰", "九天", "值符", undefined, "白虎", "六合", "九地", "騰蛇"]);
+        expect(QimenUtil.八神(地盤干1, "陽遁", "戊", "丙")).toEqual(["九地", "六合", "值符", "騰蛇", undefined, "玄武", "白虎", "九天", "太陰"]);
+        expect(QimenUtil.八神(地盤干1, "陽遁", "戊", "丁")).toEqual(["六合", "值符", "玄武", "九地", undefined, "太陰", "騰蛇", "白虎", "九天"]);
+        expect(QimenUtil.八神(地盤干1, "陽遁", "戊", "戊")).toEqual(["六合", "值符", "玄武", "九地", undefined, "太陰", "騰蛇", "白虎", "九天"]);
+        expect(QimenUtil.八神(地盤干1, "陽遁", "戊", "己")).toEqual(["騰蛇", "九地", "六合", "白虎", undefined, "值符", "九天", "太陰", "玄武"]);
+        expect(QimenUtil.八神(地盤干1, "陽遁", "戊", "庚")).toEqual(["太陰", "九天", "白虎", "玄武", undefined, "騰蛇", "值符", "六合", "九地"]);
+        expect(QimenUtil.八神(地盤干1, "陽遁", "戊", "辛")).toEqual(["九天", "白虎", "騰蛇", "太陰", undefined, "九地", "玄武", "值符", "六合"]);
+        expect(QimenUtil.八神(地盤干1, "陽遁", "戊", "壬")).toEqual(["白虎", "騰蛇", "九地", "九天", undefined, "六合", "太陰", "玄武", "值符"]);
+        expect(QimenUtil.八神(地盤干1, "陽遁", "戊", "癸")).toEqual(["值符", "玄武", "太陰", "六合", undefined, "九天", "九地", "騰蛇", "白虎"]);
+
         expect(QimenUtil.八神(地盤干1, "陽遁", "己", "甲")).toEqual(["騰蛇", "九地", "六合", "白虎", undefined, "值符", "九天", "太陰", "玄武"]);
         expect(QimenUtil.八神(地盤干1, "陽遁", "己", "乙")).toEqual(["玄武", "太陰", "九天", "值符", undefined, "白虎", "六合", "九地", "騰蛇"]);
         expect(QimenUtil.八神(地盤干1, "陽遁", "己", "丙")).toEqual(["九地", "六合", "值符", "騰蛇", undefined, "玄武", "白虎", "九天", "太陰"]);
@@ -205,8 +216,45 @@ describe("QimenUtil", () => {
         expect(QimenUtil.八門("死門", "巽四宮")).toEqual(["傷門", "開門", "景門", "死門", undefined, "生門", "休門", "杜門", "驚門"]);
 
         expect(QimenUtil.八門("開門", "乾六宮")).toEqual(["休門", "死門", "傷門", "杜門", undefined, "開門", "驚門", "生門", "景門"]);
+        expect(QimenUtil.八門("開門", "兌七宮")).toEqual(["生門", "驚門", "杜門", "景門", undefined, "休門", "開門", "傷門", "死門"]);
+        expect(QimenUtil.八門("開門", "艮八宮")).toEqual(["驚門", "杜門", "休門", "生門", undefined, "死門", "景門", "開門", "傷門"]);
+        expect(QimenUtil.八門("開門", "離九宮")).toEqual(["杜門", "休門", "死門", "驚門", undefined, "傷門", "生門", "景門", "開門"]);
+        expect(QimenUtil.八門("開門", "坎一宮")).toEqual(["開門", "景門", "生門", "傷門", undefined, "驚門", "死門", "休門", "杜門"]);
+        expect(QimenUtil.八門("開門", "坤二宮")).toEqual(["傷門", "開門", "景門", "死門", undefined, "生門", "休門", "杜門", "驚門"]);
+        expect(QimenUtil.八門("開門", "震三宮")).toEqual(["死門", "傷門", "開門", "休門", undefined, "景門", "杜門", "驚門", "生門"]);
+        expect(QimenUtil.八門("開門", "巽四宮")).toEqual(["景門", "生門", "驚門", "開門", undefined, "杜門", "傷門", "死門", "休門"]);
+        expect(QimenUtil.八門("開門", "中五宮")).toEqual(["傷門", "開門", "景門", "死門", undefined, "生門", "休門", "杜門", "驚門"]);
+        expect(QimenUtil.八門("開門", "乾六宮")).toEqual(["休門", "死門", "傷門", "杜門", undefined, "開門", "驚門", "生門", "景門"]);
+
         expect(QimenUtil.八門("生門", "艮八宮")).toEqual(["休門", "死門", "傷門", "杜門", undefined, "開門", "驚門", "生門", "景門"]);
         expect(QimenUtil.八門("景門", "離九宮")).toEqual(["休門", "死門", "傷門", "杜門", undefined, "開門", "驚門", "生門", "景門"]);
         expect(QimenUtil.八門("休門", "坎一宮")).toEqual(["休門", "死門", "傷門", "杜門", undefined, "開門", "驚門", "生門", "景門"]);
+    });
+
+    it("空亡", () => {
+        expect(QimenUtil.空亡("甲子")).toEqual(["戌", "亥"]);
+        expect(QimenUtil.空亡("甲戌")).toEqual(["申", "酉"]);
+        expect(QimenUtil.空亡("甲申")).toEqual(["午", "未"]);
+        expect(QimenUtil.空亡("甲午")).toEqual(["辰", "巳"]);
+        expect(QimenUtil.空亡("甲辰")).toEqual(["寅", "卯"]);
+        expect(QimenUtil.空亡("甲寅")).toEqual(["子", "丑"]);
+    });
+
+    it("驛馬", () => {
+        expect(QimenUtil.驛馬("寅")).toEqual("申");
+        expect(QimenUtil.驛馬("午")).toEqual("申");
+        expect(QimenUtil.驛馬("戌")).toEqual("申");
+
+        expect(QimenUtil.驛馬("巳")).toEqual("亥");
+        expect(QimenUtil.驛馬("酉")).toEqual("亥");
+        expect(QimenUtil.驛馬("丑")).toEqual("亥");
+
+        expect(QimenUtil.驛馬("亥")).toEqual("巳");
+        expect(QimenUtil.驛馬("卯")).toEqual("巳");
+        expect(QimenUtil.驛馬("未")).toEqual("巳");
+
+        expect(QimenUtil.驛馬("申")).toEqual("寅");
+        expect(QimenUtil.驛馬("子")).toEqual("寅");
+        expect(QimenUtil.驛馬("辰")).toEqual("寅");
     });
 });

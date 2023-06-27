@@ -16,6 +16,12 @@ export type 三奇六儀 = 三奇 | 六儀;
 
 export type 天干 = "甲" | 三奇六儀;
 
+export type 四驛馬 = "申" | "巳" | "亥" | "寅";
+export type 四桃花 = "子" | "午" | "卯" | "酉";
+export type 四庫 = "辰" | "戌" | "丑" | "未";
+
+export type 地支 = 四驛馬 | 四桃花 | 四庫;
+
 export type 六十甲子 =
     | "甲子"
     | "乙丑"

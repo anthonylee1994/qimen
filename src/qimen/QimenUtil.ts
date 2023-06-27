@@ -1,5 +1,5 @@
-import {三奇六儀, 上中下元, 六儀, 局數, 旬首, 遁, 節氣, 六十甲子, 天干, 八神} from "@/qimen/type";
-import {三奇六儀列, 局數表, 旬首表, 節氣遁表, 轉盤轉飛星序, 六儀遁表, 飛星轉轉盤序, 上中下元表, 八神序} from "./dictionary";
+import {三奇六儀, 上中下元, 六儀, 局數, 旬首, 遁, 節氣, 六十甲子, 天干, 八神, 九星} from "@/qimen/type";
+import {三奇六儀列, 局數表, 旬首表, 節氣遁表, 轉盤轉飛星序, 六儀遁表, 飛星轉轉盤序, 上中下元表, 八神序, 九星序} from "./dictionary";
 
 const wrapNumberInRange = (num: number, min: number, max: number) => {
     const range = max - min + 1;
@@ -76,8 +76,8 @@ const 天盤干 = (地盤干: 三奇六儀[], 遁干: 六儀, 時干: 天干): (
 
 const 八神 = (地盤干: 三奇六儀[], 遁: 遁, 遁干: 六儀, 時干: 天干): (八神 | undefined)[] => {
     const arr: (八神 | undefined)[] = [];
-
     const 地盤干轉盤序 = 飛星轉轉盤序.map(_ => 地盤干[_ - 1]);
+
     const 遁干索引 = 地盤干轉盤序.findIndex(_ => _ === 遁干);
     const 時干索引 = 地盤時干轉盤索引(地盤干轉盤序, 時干, 遁干索引);
 
@@ -87,6 +87,21 @@ const 八神 = (地盤干: 三奇六儀[], 遁: 遁, 遁干: 六儀, 時干: 天
         } else {
             arr[wrapNumberInRange(時干索引 - i, 0, 7)] = 八神序[i];
         }
+    }
+
+    // 轉回飛星序
+    return 轉盤轉飛星序.map(_ => (_ ? arr[_ - 1] : undefined));
+};
+
+const 九星 = (地盤干: 三奇六儀[], 遁干: 六儀, 時干: 天干): (九星 | undefined)[] => {
+    const arr: (九星 | undefined)[] = [];
+    const 地盤干轉盤序 = 飛星轉轉盤序.map(_ => 地盤干[_ - 1]);
+
+    const 遁干索引 = 地盤干轉盤序.findIndex(_ => _ === 遁干);
+    const 時干索引 = 地盤時干轉盤索引(地盤干轉盤序, 時干, 遁干索引);
+
+    for (let i = 0; i < 8; i++) {
+        arr[wrapNumberInRange(時干索引 + i, 0, 7)] = 九星序[wrapNumberInRange(遁干索引 + i, 0, 7)];
     }
 
     // 轉回飛星序
@@ -108,6 +123,7 @@ export const QimenUtil = Object.freeze({
     地盤干,
     天盤干,
     八神,
+    九星,
     天干測試,
 });
 

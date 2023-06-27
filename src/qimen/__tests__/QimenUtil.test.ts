@@ -111,4 +111,18 @@ describe("QimenUtil", () => {
         expect(QimenUtil.八神(地盤干2, "陰遁", "辛", "壬")).toEqual(["騰蛇", "白虎", "九天", "九地", undefined, "太陰", "六合", "值符", "玄武"]);
         expect(QimenUtil.八神(地盤干2, "陰遁", "辛", "癸")).toEqual(["九地", "騰蛇", "白虎", "六合", undefined, "九天", "值符", "玄武", "太陰"]);
     });
+
+    it("九星", () => {
+        const 地盤干: 三奇六儀[] = ["癸", "丁", "丙", "乙", "戊", "己", "庚", "辛", "壬"];
+        expect(QimenUtil.九星(地盤干, "己", "甲")).toEqual(["天蓬", "天芮", "天冲", "天輔", undefined, "天心", "天柱", "天任", "天英"]);
+        expect(QimenUtil.九星(地盤干, "己", "乙")).toEqual(["天英", "天任", "天柱", "天心", undefined, "天輔", "天冲", "天芮", "天蓬"]);
+        expect(QimenUtil.九星(地盤干, "己", "丙")).toEqual(["天芮", "天冲", "天心", "天蓬", undefined, "天英", "天輔", "天柱", "天任"]);
+        expect(QimenUtil.九星(地盤干, "己", "丁")).toEqual(["天冲", "天心", "天英", "天芮", undefined, "天任", "天蓬", "天輔", "天柱"]);
+        expect(QimenUtil.九星(地盤干, "己", "戊")).toEqual(["天冲", "天心", "天英", "天芮", undefined, "天任", "天蓬", "天輔", "天柱"]);
+        expect(QimenUtil.九星(地盤干, "己", "己")).toEqual(["天蓬", "天芮", "天冲", "天輔", undefined, "天心", "天柱", "天任", "天英"]);
+        expect(QimenUtil.九星(地盤干, "己", "庚")).toEqual(["天任", "天柱", "天輔", "天英", undefined, "天蓬", "天心", "天冲", "天芮"]);
+        expect(QimenUtil.九星(地盤干, "己", "辛")).toEqual(["天柱", "天輔", "天蓬", "天任", undefined, "天芮", "天英", "天心", "天冲"]);
+        expect(QimenUtil.九星(地盤干, "己", "壬")).toEqual(["天輔", "天蓬", "天芮", "天柱", undefined, "天冲", "天任", "天英", "天心"]);
+        expect(QimenUtil.九星(地盤干, "己", "癸")).toEqual(["天心", "天英", "天任", "天冲", undefined, "天柱", "天芮", "天蓬", "天輔"]);
+    });
 });

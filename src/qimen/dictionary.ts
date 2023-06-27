@@ -1,4 +1,4 @@
-import {三奇六儀, 上中下元, 六儀, 六十甲子, 局數, 旬首, 節氣, 遁} from "./type";
+import {三奇六儀, 上中下元, 八神, 六儀, 六十甲子, 局數, 旬首, 節氣, 遁} from "./type";
 
 export const 飛星轉轉盤序: number[] = [1, 8, 3, 4, 9, 2, 7, 6];
 export const 轉盤轉飛星序: (number | undefined)[] = [1, 6, 3, 4, undefined, 8, 7, 2, 5];
@@ -60,3 +60,5 @@ export const 局數表: Record<string, [局數, 局數, 局數]> = {
     小雪: [5, 8, 2],
     大雪: [4, 7, 1],
 };
+
+export const 八神序: 八神[] = ["值符", "騰蛇", "太陰", "六合", "白虎", "玄武", "九地", "九天"];

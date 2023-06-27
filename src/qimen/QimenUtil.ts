@@ -1,5 +1,5 @@
-import {三奇六儀, 上中下元, 六儀, 局數, 旬首, 遁, 節氣, 六十甲子, 天干} from "@/qimen/type";
-import {三奇六儀列, 局數表, 旬首表, 節氣遁表, 轉盤轉飛星序, 六儀遁表, 飛星轉轉盤序, 上中下元表} from "./dictionary";
+import {三奇六儀, 上中下元, 六儀, 局數, 旬首, 遁, 節氣, 六十甲子, 天干, 八神} from "@/qimen/type";
+import {三奇六儀列, 局數表, 旬首表, 節氣遁表, 轉盤轉飛星序, 六儀遁表, 飛星轉轉盤序, 上中下元表, 八神序} from "./dictionary";
 
 const wrapNumberInRange = (num: number, min: number, max: number) => {
     const range = max - min + 1;
@@ -45,27 +45,52 @@ const 地盤干 = (遁: 遁, 局數: 局數): 三奇六儀[] => {
     return arr;
 };
 
-const 天盤干 = (地盤干: 三奇六儀[], 遁干: 六儀, 時干: 天干): (三奇六儀 | undefined)[] => {
-    const arr: string[] = [];
-    const 地盤順轉列 = 飛星轉轉盤序.map(_ => 地盤干[_ - 1]);
-
-    let 時干索引 = 地盤順轉列.findIndex(_ => _ === 時干);
+const 地盤時干轉盤索引 = (地盤干轉盤序: 三奇六儀[], 時干: 天干, 遁干索引: number): number => {
+    const 時干索引 = 地盤干轉盤序.findIndex(_ => _ === 時干);
 
     if (時干 === "甲") {
         // for 甲時，天盤伏吟
-        return [...地盤干.slice(0, 4), undefined, ...地盤干.slice(5)];
+        return 遁干索引;
     } else if (時干索引 === -1) {
-        // 時辰在中宮，寄盤干寄在坤二宮
-        時干索引 = 5;
+        // 如果時干在地盤中宮，寄天盤干落坤二宮
+        return 5;
+    } else {
+        return 時干索引;
     }
+};
 
-    const 遁干索引 = 地盤順轉列.findIndex(_ => _ === 遁干);
+const 天盤干 = (地盤干: 三奇六儀[], 遁干: 六儀, 時干: 天干): (三奇六儀 | undefined)[] => {
+    const arr: (三奇六儀 | undefined)[] = [];
+    const 地盤干轉盤序 = 飛星轉轉盤序.map(_ => 地盤干[_ - 1]);
+
+    const 遁干索引 = 地盤干轉盤序.findIndex(_ => _ === 遁干);
+    const 時干索引 = 地盤時干轉盤索引(地盤干轉盤序, 時干, 遁干索引);
 
     for (let i = 0; i < 9; i++) {
-        arr[(i + 時干索引) % 8] = 地盤順轉列[(i + 遁干索引) % 8];
+        arr[wrapNumberInRange(時干索引 + i, 0, 7)] = 地盤干轉盤序[wrapNumberInRange(遁干索引 + i, 0, 7)];
     }
 
-    return 轉盤轉飛星序.map(_ => (_ ? arr[_ - 1] : undefined)) as 三奇六儀[];
+    // 轉回飛星序
+    return 轉盤轉飛星序.map(_ => (_ ? arr[_ - 1] : undefined));
+};
+
+const 八神 = (地盤干: 三奇六儀[], 遁: 遁, 遁干: 六儀, 時干: 天干): (八神 | undefined)[] => {
+    const arr: (八神 | undefined)[] = [];
+
+    const 地盤干轉盤序 = 飛星轉轉盤序.map(_ => 地盤干[_ - 1]);
+    const 遁干索引 = 地盤干轉盤序.findIndex(_ => _ === 遁干);
+    const 時干索引 = 地盤時干轉盤索引(地盤干轉盤序, 時干, 遁干索引);
+
+    for (let i = 0; i < 8; i++) {
+        if (遁 === "陽遁") {
+            arr[wrapNumberInRange(時干索引 + i, 0, 7)] = 八神序[i];
+        } else {
+            arr[wrapNumberInRange(時干索引 - i, 0, 7)] = 八神序[i];
+        }
+    }
+
+    // 轉回飛星序
+    return 轉盤轉飛星序.map(_ => (_ ? arr[_ - 1] : undefined));
 };
 
 const 天干測試 = (result: 三奇六儀[]) => {
@@ -82,6 +107,7 @@ export const QimenUtil = Object.freeze({
     遁干,
     地盤干,
     天盤干,
+    八神,
     天干測試,
 });
 

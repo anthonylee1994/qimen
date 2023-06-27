@@ -65,7 +65,7 @@ describe("QimenUtil", () => {
         expect(QimenUtil.地盤干("陰遁", 9)).toEqual(["乙", "丙", "丁", "癸", "壬", "辛", "庚", "己", "戊"]);
     });
 
-    it.only("天盤干", () => {
+    it("天盤干", () => {
         const 地盤干: 三奇六儀[] = ["癸", "丁", "丙", "乙", "戊", "己", "庚", "辛", "壬"];
         expect(QimenUtil.天盤干(地盤干, "己", "甲")).toEqual(["癸", "丁", "丙", "乙", undefined, "己", "庚", "辛", "壬"]);
         expect(QimenUtil.天盤干(地盤干, "己", "乙")).toEqual(["壬", "辛", "庚", "己", undefined, "乙", "丙", "丁", "癸"]);
@@ -77,11 +77,38 @@ describe("QimenUtil", () => {
         expect(QimenUtil.天盤干(地盤干, "己", "辛")).toEqual(["庚", "乙", "癸", "辛", undefined, "丁", "壬", "己", "丙"]);
         expect(QimenUtil.天盤干(地盤干, "己", "壬")).toEqual(["乙", "癸", "丁", "庚", undefined, "丙", "辛", "壬", "己"]);
         expect(QimenUtil.天盤干(地盤干, "己", "癸")).toEqual(["己", "壬", "辛", "丙", undefined, "庚", "丁", "癸", "乙"]);
+
         expect(QimenUtil.天盤干(地盤干, "庚", "甲")).toEqual(["癸", "丁", "丙", "乙", undefined, "己", "庚", "辛", "壬"]);
         expect(QimenUtil.天盤干(地盤干, "庚", "乙")).toEqual(["乙", "癸", "丁", "庚", undefined, "丙", "辛", "壬", "己"]);
         expect(QimenUtil.天盤干(地盤干, "庚", "丙")).toEqual(["壬", "辛", "庚", "己", undefined, "乙", "丙", "丁", "癸"]);
         expect(QimenUtil.天盤干(地盤干, "庚", "丁")).toEqual(["辛", "庚", "乙", "壬", undefined, "癸", "己", "丙", "丁"]);
         expect(QimenUtil.天盤干(地盤干, "庚", "戊")).toEqual(["辛", "庚", "乙", "壬", undefined, "癸", "己", "丙", "丁"]);
         expect(QimenUtil.天盤干(地盤干, "庚", "己")).toEqual(["己", "壬", "辛", "丙", undefined, "庚", "丁", "癸", "乙"]);
+    });
+
+    it("八神", () => {
+        const 地盤干1: 三奇六儀[] = ["癸", "丁", "丙", "乙", "戊", "己", "庚", "辛", "壬"];
+        expect(QimenUtil.八神(地盤干1, "陽遁", "己", "甲")).toEqual(["騰蛇", "九地", "六合", "白虎", undefined, "值符", "九天", "太陰", "玄武"]);
+        expect(QimenUtil.八神(地盤干1, "陽遁", "己", "乙")).toEqual(["玄武", "太陰", "九天", "值符", undefined, "白虎", "六合", "九地", "騰蛇"]);
+        expect(QimenUtil.八神(地盤干1, "陽遁", "己", "丙")).toEqual(["九地", "六合", "值符", "騰蛇", undefined, "玄武", "白虎", "九天", "太陰"]);
+        expect(QimenUtil.八神(地盤干1, "陽遁", "己", "丁")).toEqual(["六合", "值符", "玄武", "九地", undefined, "太陰", "騰蛇", "白虎", "九天"]);
+        expect(QimenUtil.八神(地盤干1, "陽遁", "己", "戊")).toEqual(["六合", "值符", "玄武", "九地", undefined, "太陰", "騰蛇", "白虎", "九天"]);
+        expect(QimenUtil.八神(地盤干1, "陽遁", "己", "己")).toEqual(["騰蛇", "九地", "六合", "白虎", undefined, "值符", "九天", "太陰", "玄武"]);
+        expect(QimenUtil.八神(地盤干1, "陽遁", "己", "庚")).toEqual(["太陰", "九天", "白虎", "玄武", undefined, "騰蛇", "值符", "六合", "九地"]);
+        expect(QimenUtil.八神(地盤干1, "陽遁", "己", "辛")).toEqual(["九天", "白虎", "騰蛇", "太陰", undefined, "九地", "玄武", "值符", "六合"]);
+        expect(QimenUtil.八神(地盤干1, "陽遁", "己", "壬")).toEqual(["白虎", "騰蛇", "九地", "九天", undefined, "六合", "太陰", "玄武", "值符"]);
+        expect(QimenUtil.八神(地盤干1, "陽遁", "己", "癸")).toEqual(["值符", "玄武", "太陰", "六合", undefined, "九天", "九地", "騰蛇", "白虎"]);
+
+        const 地盤干2: 三奇六儀[] = ["庚", "己", "戊", "乙", "丙", "丁", "癸", "壬", "辛"];
+        expect(QimenUtil.八神(地盤干2, "陰遁", "辛", "甲")).toEqual(["白虎", "九天", "太陰", "騰蛇", undefined, "玄武", "九地", "六合", "值符"]);
+        expect(QimenUtil.八神(地盤干2, "陰遁", "辛", "乙")).toEqual(["六合", "九地", "騰蛇", "值符", undefined, "白虎", "玄武", "太陰", "九天"]);
+        expect(QimenUtil.八神(地盤干2, "陰遁", "辛", "丙")).toEqual(["玄武", "值符", "六合", "太陰", undefined, "九地", "九天", "白虎", "騰蛇"]);
+        expect(QimenUtil.八神(地盤干2, "陰遁", "辛", "丁")).toEqual(["九天", "太陰", "玄武", "白虎", undefined, "值符", "騰蛇", "九地", "六合"]);
+        expect(QimenUtil.八神(地盤干2, "陰遁", "辛", "戊")).toEqual(["太陰", "玄武", "值符", "九天", undefined, "六合", "白虎", "騰蛇", "九地"]);
+        expect(QimenUtil.八神(地盤干2, "陰遁", "辛", "己")).toEqual(["玄武", "值符", "六合", "太陰", undefined, "九地", "九天", "白虎", "騰蛇"]);
+        expect(QimenUtil.八神(地盤干2, "陰遁", "辛", "庚")).toEqual(["值符", "六合", "九地", "玄武", undefined, "騰蛇", "太陰", "九天", "白虎"]);
+        expect(QimenUtil.八神(地盤干2, "陰遁", "辛", "辛")).toEqual(["白虎", "九天", "太陰", "騰蛇", undefined, "玄武", "九地", "六合", "值符"]);
+        expect(QimenUtil.八神(地盤干2, "陰遁", "辛", "壬")).toEqual(["騰蛇", "白虎", "九天", "九地", undefined, "太陰", "六合", "值符", "玄武"]);
+        expect(QimenUtil.八神(地盤干2, "陰遁", "辛", "癸")).toEqual(["九地", "騰蛇", "白虎", "六合", undefined, "九天", "值符", "玄武", "太陰"]);
     });
 });

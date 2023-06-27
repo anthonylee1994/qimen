@@ -192,4 +192,21 @@ describe("QimenUtil", () => {
         expect(QimenUtil.值使門(地盤干, "壬", "甲")).toEqual(["景門", "離九宮"]);
         expect(QimenUtil.值使門(地盤干, "癸", "甲")).toEqual(["休門", "坎一宮"]);
     });
+
+    it("八門", () => {
+        expect(QimenUtil.八門("死門", "中五宮")).toEqual(["休門", "死門", "傷門", "杜門", undefined, "開門", "驚門", "生門", "景門"]);
+        expect(QimenUtil.八門("死門", "乾六宮")).toEqual(["驚門", "杜門", "休門", "生門", undefined, "死門", "景門", "開門", "傷門"]);
+        expect(QimenUtil.八門("死門", "兌七宮")).toEqual(["開門", "景門", "生門", "傷門", undefined, "驚門", "死門", "休門", "杜門"]);
+        expect(QimenUtil.八門("死門", "艮八宮")).toEqual(["景門", "生門", "驚門", "開門", undefined, "杜門", "傷門", "死門", "休門"]);
+        expect(QimenUtil.八門("死門", "離九宮")).toEqual(["生門", "驚門", "杜門", "景門", undefined, "休門", "開門", "傷門", "死門"]);
+        expect(QimenUtil.八門("死門", "坎一宮")).toEqual(["死門", "傷門", "開門", "休門", undefined, "景門", "杜門", "驚門", "生門"]);
+        expect(QimenUtil.八門("死門", "坤二宮")).toEqual(["休門", "死門", "傷門", "杜門", undefined, "開門", "驚門", "生門", "景門"]);
+        expect(QimenUtil.八門("死門", "震三宮")).toEqual(["杜門", "休門", "死門", "驚門", undefined, "傷門", "生門", "景門", "開門"]);
+        expect(QimenUtil.八門("死門", "巽四宮")).toEqual(["傷門", "開門", "景門", "死門", undefined, "生門", "休門", "杜門", "驚門"]);
+
+        expect(QimenUtil.八門("開門", "乾六宮")).toEqual(["休門", "死門", "傷門", "杜門", undefined, "開門", "驚門", "生門", "景門"]);
+        expect(QimenUtil.八門("生門", "艮八宮")).toEqual(["休門", "死門", "傷門", "杜門", undefined, "開門", "驚門", "生門", "景門"]);
+        expect(QimenUtil.八門("景門", "離九宮")).toEqual(["休門", "死門", "傷門", "杜門", undefined, "開門", "驚門", "生門", "景門"]);
+        expect(QimenUtil.八門("休門", "坎一宮")).toEqual(["休門", "死門", "傷門", "杜門", undefined, "開門", "驚門", "生門", "景門"]);
+    });
 });

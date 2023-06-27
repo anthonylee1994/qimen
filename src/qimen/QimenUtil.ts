@@ -1,5 +1,5 @@
 import {三奇六儀, 上中下元, 六儀, 局數, 旬首, 遁, 節氣, 六十甲子, 天干, 八神, 九星, 八門, 宮位} from "./type";
-import {三奇六儀序, 局數表, 旬首表, 節氣遁表, 轉盤轉飛星序, 六儀遁表, 飛星轉轉盤序, 上中下元表, 八神序, 九星序, 八門序, 宮位序, 天干序, 宮位轉盤序} from "./dictionary";
+import {三奇六儀序, 局數表, 旬首表, 節氣遁表, 轉盤轉飛星序, 六儀遁表, 飛星轉轉盤序, 上中下元表, 八神序, 九星序, 八門序, 宮位飛星序, 天干序, 宮位轉盤序} from "./dictionary";
 
 const circularNumber = (num: number, min: number, max: number) => {
     const range = max - min + 1;
@@ -122,18 +122,17 @@ const 值使門 = (地盤干: 三奇六儀[], 遁干: 六儀, 時干: 天干): [
     const 宮位數 = 遁干索引 === -1 ? 4 : 八門飛星序.indexOf(八門序[遁干索引]);
     const 八門 = 八門序[遁干索引 === -1 ? 5 : 遁干索引];
 
-    return [八門, 宮位序[circularNumber(宮位數 + 天干序.indexOf(時干), 0, 8)]];
+    return [八門, 宮位飛星序[circularNumber(宮位數 + 天干序.indexOf(時干), 0, 8)]];
 };
 
-// const 八門 = (值使門: 八門, 遁干: 六儀, 時干: 天干): (八門 | undefined)[] => {
-//     // const 值使門索引 = 八門序.findIndex(_ => _ === 值使門);
+const 八門 = (值使門: 八門, 宮位: 宮位): (八門 | undefined)[] => {
+    const arr: (八門 | undefined)[] = [];
+    for (let i = 0; i < 8; i++) {
+        arr[circularNumber(i + 宮位轉盤序.indexOf(宮位 === "中五宮" ? "坤二宮" : 宮位), 0, 7)] = 八門序[circularNumber(i + 八門序.indexOf(值使門), 0, 7)];
+    }
 
-//     console.log("時干", 時干);
-//     // console.log("遁干索引", 遁干索引);
-//     console.log("值使門", 值使門);
-
-//     return [];
-// };
+    return 轉盤轉飛星序.map(_ => (_ ? arr[_ - 1] : undefined));
+};
 
 const 天干測試 = (result: 三奇六儀[]) => {
     console.log(result[4 - 1] + "(4)", result[9 - 1] + "(9)", result[2 - 1] + "(2)");
@@ -153,7 +152,7 @@ export const QimenUtil = Object.freeze({
     九星,
     值符落宮,
     值使門,
-    // 八門,
+    八門,
     天干測試,
 });
 

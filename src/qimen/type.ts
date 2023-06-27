@@ -1,3 +1,5 @@
+import {JieQi} from "lunar-typescript";
+
 export type 旬首 = "甲子" | "甲寅" | "甲辰" | "甲午" | "甲申" | "甲戌";
 
 export type 上中下元 = "上元" | "中元" | "下元";
@@ -115,3 +117,28 @@ export type 八神 = "值符" | "騰蛇" | "太陰" | "六合" | "白虎" | "玄
 export type 九星 = "天蓬" | "天任" | "天冲" | "天輔" | "天英" | "天芮" | "天柱" | "天心" | "天禽";
 
 export type 八門 = "休門" | "生門" | "傷門" | "杜門" | "景門" | "死門" | "驚門" | "開門";
+
+export interface QimenCell {
+    八神: 八神;
+    九星: 九星;
+    八門: 八門;
+    天盤干: 天干;
+    地盤干: 天干;
+    宮位: 宮位;
+    是否空亡: boolean;
+    是否驛馬: boolean;
+}
+
+export interface QimenPan {
+    上中下元: 上中下元;
+    遁: 遁;
+    局數: 局數;
+    旬首: 旬首;
+    值符星: 九星;
+    值符落宮: 宮位;
+    值使門: 八門;
+    值使落宮: 宮位;
+    天乙星: 九星;
+    節氣: JieQi;
+    九宮: [QimenCell, QimenCell, QimenCell, QimenCell, QimenCell, QimenCell, QimenCell, QimenCell, QimenCell];
+}

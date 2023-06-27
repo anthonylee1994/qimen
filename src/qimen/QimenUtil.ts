@@ -121,6 +121,11 @@ const 九星 = (地盤干: 三奇六儀[], 遁干: 六儀, 時干: 天干): (九
     return 轉盤轉飛星序.map(_ => (_ ? arr[_ - 1] : undefined));
 };
 
+const 天乙 = (天盤干: (三奇六儀 | undefined)[], 九星: (九星 | undefined)[], 時干: 天干): 九星 => {
+    const index = 天盤干.findIndex(_ => _ === 時干);
+    return index === -1 ? "天禽" : (九星[index] as 九星);
+};
+
 const 值使門 = (地盤干: 三奇六儀[], 遁干: 六儀, 時干: 天干): [八門, 宮位] => {
     const 地盤干轉盤序 = 飛星轉轉盤序.map(_ => 地盤干[_ - 1]);
     const 遁干索引 = 地盤干轉盤序.findIndex(_ => _ === 遁干);
@@ -164,6 +169,7 @@ export const QimenUtil = Object.freeze({
     天干測試,
     空亡,
     驛馬,
+    天乙,
 });
 
 // calculate() {

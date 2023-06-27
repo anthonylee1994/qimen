@@ -1,4 +1,4 @@
-import {Lunar} from "lunar-typescript";
+import {JieQi, Lunar} from "lunar-typescript";
 
 const 時干支 = (lunar: Lunar): string => {
     return `${lunar.getTimeGan()}${lunar.getTimeZhi()}`;
@@ -8,8 +8,8 @@ const 日干支 = (lunar: Lunar): string => {
     return `${lunar.getDayGan()}${lunar.getDayZhi()}`;
 };
 
-const 節氣 = (lunar: Lunar): string => {
-    return lunar.getPrevJieQi(true).getName();
+const 節氣 = (lunar: Lunar): JieQi => {
+    return lunar.getPrevJieQi(true);
 };
 
 export const LunarUtil = Object.freeze({

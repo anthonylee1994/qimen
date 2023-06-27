@@ -114,6 +114,18 @@ describe("QimenUtil", () => {
 
     it("九星", () => {
         const 地盤干: 三奇六儀[] = ["癸", "丁", "丙", "乙", "戊", "己", "庚", "辛", "壬"];
+
+        expect(QimenUtil.九星(地盤干, "戊", "甲")).toEqual(["天蓬", "天芮", "天冲", "天輔", undefined, "天心", "天柱", "天任", "天英"]);
+        expect(QimenUtil.九星(地盤干, "戊", "乙")).toEqual(["天冲", "天心", "天英", "天芮", undefined, "天任", "天蓬", "天輔", "天柱"]);
+        expect(QimenUtil.九星(地盤干, "戊", "丙")).toEqual(["天輔", "天蓬", "天芮", "天柱", undefined, "天冲", "天任", "天英", "天心"]);
+        expect(QimenUtil.九星(地盤干, "戊", "丁")).toEqual(["天蓬", "天芮", "天冲", "天輔", undefined, "天心", "天柱", "天任", "天英"]);
+        expect(QimenUtil.九星(地盤干, "戊", "戊")).toEqual(["天蓬", "天芮", "天冲", "天輔", undefined, "天心", "天柱", "天任", "天英"]);
+        expect(QimenUtil.九星(地盤干, "戊", "己")).toEqual(["天柱", "天輔", "天蓬", "天任", undefined, "天芮", "天英", "天心", "天冲"]);
+        expect(QimenUtil.九星(地盤干, "戊", "庚")).toEqual(["天心", "天英", "天任", "天冲", undefined, "天柱", "天芮", "天蓬", "天輔"]);
+        expect(QimenUtil.九星(地盤干, "戊", "辛")).toEqual(["天英", "天任", "天柱", "天心", undefined, "天輔", "天冲", "天芮", "天蓬"]);
+        expect(QimenUtil.九星(地盤干, "戊", "壬")).toEqual(["天任", "天柱", "天輔", "天英", undefined, "天蓬", "天心", "天冲", "天芮"]);
+        expect(QimenUtil.九星(地盤干, "戊", "癸")).toEqual(["天芮", "天冲", "天心", "天蓬", undefined, "天英", "天輔", "天柱", "天任"]);
+
         expect(QimenUtil.九星(地盤干, "己", "甲")).toEqual(["天蓬", "天芮", "天冲", "天輔", undefined, "天心", "天柱", "天任", "天英"]);
         expect(QimenUtil.九星(地盤干, "己", "乙")).toEqual(["天英", "天任", "天柱", "天心", undefined, "天輔", "天冲", "天芮", "天蓬"]);
         expect(QimenUtil.九星(地盤干, "己", "丙")).toEqual(["天芮", "天冲", "天心", "天蓬", undefined, "天英", "天輔", "天柱", "天任"]);
@@ -124,5 +136,60 @@ describe("QimenUtil", () => {
         expect(QimenUtil.九星(地盤干, "己", "辛")).toEqual(["天柱", "天輔", "天蓬", "天任", undefined, "天芮", "天英", "天心", "天冲"]);
         expect(QimenUtil.九星(地盤干, "己", "壬")).toEqual(["天輔", "天蓬", "天芮", "天柱", undefined, "天冲", "天任", "天英", "天心"]);
         expect(QimenUtil.九星(地盤干, "己", "癸")).toEqual(["天心", "天英", "天任", "天冲", undefined, "天柱", "天芮", "天蓬", "天輔"]);
+    });
+
+    it("值符落宮", () => {
+        const 地盤干: 三奇六儀[] = ["癸", "丁", "丙", "乙", "戊", "己", "庚", "辛", "壬"];
+        expect(QimenUtil.值符落宮(地盤干, "戊", "甲")).toEqual(["天禽", "中五宮"]);
+        expect(QimenUtil.值符落宮(地盤干, "戊", "乙")).toEqual(["天禽", "巽四宮"]);
+        expect(QimenUtil.值符落宮(地盤干, "戊", "丙")).toEqual(["天禽", "震三宮"]);
+        expect(QimenUtil.值符落宮(地盤干, "戊", "丁")).toEqual(["天禽", "坤二宮"]);
+        expect(QimenUtil.值符落宮(地盤干, "戊", "戊")).toEqual(["天禽", "中五宮"]);
+        expect(QimenUtil.值符落宮(地盤干, "戊", "己")).toEqual(["天禽", "乾六宮"]);
+        expect(QimenUtil.值符落宮(地盤干, "戊", "庚")).toEqual(["天禽", "兌七宮"]);
+        expect(QimenUtil.值符落宮(地盤干, "戊", "辛")).toEqual(["天禽", "艮八宮"]);
+        expect(QimenUtil.值符落宮(地盤干, "戊", "壬")).toEqual(["天禽", "離九宮"]);
+        expect(QimenUtil.值符落宮(地盤干, "戊", "癸")).toEqual(["天禽", "坎一宮"]);
+
+        expect(QimenUtil.值符落宮(地盤干, "己", "甲")).toEqual(["天心", "乾六宮"]);
+        expect(QimenUtil.值符落宮(地盤干, "己", "乙")).toEqual(["天心", "巽四宮"]);
+        expect(QimenUtil.值符落宮(地盤干, "己", "丙")).toEqual(["天心", "震三宮"]);
+        expect(QimenUtil.值符落宮(地盤干, "己", "丁")).toEqual(["天心", "坤二宮"]);
+        expect(QimenUtil.值符落宮(地盤干, "己", "戊")).toEqual(["天心", "中五宮"]);
+        expect(QimenUtil.值符落宮(地盤干, "己", "己")).toEqual(["天心", "乾六宮"]);
+        expect(QimenUtil.值符落宮(地盤干, "己", "庚")).toEqual(["天心", "兌七宮"]);
+        expect(QimenUtil.值符落宮(地盤干, "己", "辛")).toEqual(["天心", "艮八宮"]);
+        expect(QimenUtil.值符落宮(地盤干, "己", "壬")).toEqual(["天心", "離九宮"]);
+        expect(QimenUtil.值符落宮(地盤干, "己", "癸")).toEqual(["天心", "坎一宮"]);
+    });
+
+    it("值使門", () => {
+        const 地盤干: 三奇六儀[] = ["癸", "丁", "丙", "乙", "戊", "己", "庚", "辛", "壬"];
+        expect(QimenUtil.值使門(地盤干, "戊", "甲")).toEqual(["死門", "中五宮"]);
+        expect(QimenUtil.值使門(地盤干, "戊", "乙")).toEqual(["死門", "乾六宮"]);
+        expect(QimenUtil.值使門(地盤干, "戊", "丙")).toEqual(["死門", "兌七宮"]);
+        expect(QimenUtil.值使門(地盤干, "戊", "丁")).toEqual(["死門", "艮八宮"]);
+        expect(QimenUtil.值使門(地盤干, "戊", "戊")).toEqual(["死門", "離九宮"]);
+        expect(QimenUtil.值使門(地盤干, "戊", "己")).toEqual(["死門", "坎一宮"]);
+        expect(QimenUtil.值使門(地盤干, "戊", "庚")).toEqual(["死門", "坤二宮"]);
+        expect(QimenUtil.值使門(地盤干, "戊", "辛")).toEqual(["死門", "震三宮"]);
+        expect(QimenUtil.值使門(地盤干, "戊", "壬")).toEqual(["死門", "巽四宮"]);
+        expect(QimenUtil.值使門(地盤干, "戊", "癸")).toEqual(["死門", "中五宮"]);
+
+        expect(QimenUtil.值使門(地盤干, "己", "甲")).toEqual(["開門", "乾六宮"]);
+        expect(QimenUtil.值使門(地盤干, "己", "乙")).toEqual(["開門", "兌七宮"]);
+        expect(QimenUtil.值使門(地盤干, "己", "丙")).toEqual(["開門", "艮八宮"]);
+        expect(QimenUtil.值使門(地盤干, "己", "丁")).toEqual(["開門", "離九宮"]);
+        expect(QimenUtil.值使門(地盤干, "己", "戊")).toEqual(["開門", "坎一宮"]);
+        expect(QimenUtil.值使門(地盤干, "己", "己")).toEqual(["開門", "坤二宮"]);
+        expect(QimenUtil.值使門(地盤干, "己", "庚")).toEqual(["開門", "震三宮"]);
+        expect(QimenUtil.值使門(地盤干, "己", "辛")).toEqual(["開門", "巽四宮"]);
+        expect(QimenUtil.值使門(地盤干, "己", "壬")).toEqual(["開門", "中五宮"]);
+        expect(QimenUtil.值使門(地盤干, "己", "癸")).toEqual(["開門", "乾六宮"]);
+
+        expect(QimenUtil.值使門(地盤干, "庚", "甲")).toEqual(["驚門", "兌七宮"]);
+        expect(QimenUtil.值使門(地盤干, "辛", "甲")).toEqual(["生門", "艮八宮"]);
+        expect(QimenUtil.值使門(地盤干, "壬", "甲")).toEqual(["景門", "離九宮"]);
+        expect(QimenUtil.值使門(地盤干, "癸", "甲")).toEqual(["休門", "坎一宮"]);
     });
 });

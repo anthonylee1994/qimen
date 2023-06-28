@@ -1,4 +1,4 @@
-import {三奇六儀, 上中下元, 六儀, 局數, 旬首, 遁, 節氣, 六十甲子, 天干, 八神, 九星, 八門, 宮位, 地支, 五行} from "./type";
+import {三奇六儀, 上中下元, 六儀, 局數, 旬首, 遁, 節氣, 六十甲子, 天干, 八神, 九星, 八門, 宮位, 地支, 五行, QimenPan, QimenCell, 四驛馬} from "./type";
 import {
     三奇六儀序,
     局數表,
@@ -17,7 +17,11 @@ import {
     空亡表,
     驛馬表,
     旺相休囚死表,
+    宮位地支表,
 } from "./dictionary";
+import {Lunar} from "lunar-typescript";
+import {LunarUtil} from "./LunarUtil";
+import {QimenFormatUtil} from "./FormatUtil";
 
 const 循環數 = (num: number, min: number, max: number) => {
     const range = max - min + 1;
@@ -67,8 +71,8 @@ const 空亡 = (旬首: 旬首): [地支, 地支] => {
     return 空亡表[旬首];
 };
 
-const 驛馬 = (時支: 地支): 地支 => {
-    return Object.keys(驛馬表)[Object.values(驛馬表).findIndex(_ => _.includes(時支))] as 地支;
+const 驛馬 = (時支: 地支): 四驛馬 => {
+    return Object.keys(驛馬表)[Object.values(驛馬表).findIndex(_ => _.includes(時支))] as 四驛馬;
 };
 
 const 地盤干 = (遁: 遁, 局數: 局數): 三奇六儀[] => {
@@ -141,14 +145,14 @@ const 九星 = (地盤干: 三奇六儀[], 遁干: 六儀, 時干: 天干): (九
 
 const 天乙 = (天盤干: (三奇六儀 | undefined)[], 九星: (九星 | undefined)[], 時干: 天干): 九星 => {
     const index = 天盤干.findIndex(_ => _ === 時干);
-    return index === -1 ? "天禽" : (九星[index] as 九星);
+    return index === -1 || index === 4 ? "天禽" : (九星[index] as 九星);
 };
 
 const 旺相休囚死 = (月支: 地支): [五行, 五行, 五行, 五行, 五行] => {
     return 旺相休囚死表[月支];
 };
 
-const 值使門 = (地盤干: 三奇六儀[], 遁干: 六儀, 時干: 天干): [八門, 宮位] => {
+const 值使門 = (地盤干: 三奇六儀[], 遁: 遁, 遁干: 六儀, 時干: 天干): [八門, 宮位] => {
     const 地盤干轉盤序 = 飛星轉轉盤序.map(_ => 地盤干[_ - 1]);
     const 遁干索引 = 地盤干轉盤序.findIndex(_ => _ === 遁干);
     const 八門飛星序 = 轉盤轉飛星序.map(_ => (_ ? 八門序[_ - 1] : undefined));
@@ -157,7 +161,7 @@ const 值使門 = (地盤干: 三奇六儀[], 遁干: 六儀, 時干: 天干): [
     const 宮位數 = 遁干索引 === -1 ? 4 : 八門飛星序.indexOf(八門序[遁干索引]);
     const 八門 = 八門序[遁干索引 === -1 ? 5 : 遁干索引];
 
-    return [八門, 宮位飛星序[循環數(宮位數 + 天干序.indexOf(時干), 0, 8)]];
+    return [八門, 宮位飛星序[循環數(宮位數 + 天干序.indexOf(時干) * (遁 === "陽遁" ? 1 : -1), 0, 8)]];
 };
 
 const 八門 = (值使門: 八門, 宮位: 宮位): (八門 | undefined)[] => {
@@ -169,10 +173,131 @@ const 八門 = (值使門: 八門, 宮位: 宮位): (八門 | undefined)[] => {
     return 轉盤轉飛星序.map(_ => (_ ? arr[_ - 1] : undefined));
 };
 
-const 天干測試 = (result: 三奇六儀[]) => {
-    console.log(result[4 - 1] + "(4)", result[9 - 1] + "(9)", result[2 - 1] + "(2)");
-    console.log(result[3 - 1] + "(3)", result[5 - 1] + "(5)", result[7 - 1] + "(7)");
-    console.log(result[8 - 1] + "(8)", result[1 - 1] + "(1)", result[6 - 1] + "(6)");
+const 宮位地支 = (宮位: 宮位): 地支[] => {
+    return 宮位地支表[宮位];
+};
+
+const create = (lunar: Lunar) => {
+    const [yearStem, monthStem, dayStem, hourStem] = LunarUtil.八字(lunar);
+    const monthGan = monthStem[1] as 地支;
+
+    const hourGan = hourStem[0] as 天干;
+    const hourZhi = hourStem[1] as 地支;
+
+    const solarTerm = LunarUtil.節氣(lunar);
+    const solarTermName = solarTerm.getName() as 節氣;
+
+    const yinOrYangDun = 陰遁或陽遁(solarTermName);
+    const upperMiddleLowerSector = 上中下元(dayStem);
+    const inning = 局數(solarTermName, upperMiddleLowerSector);
+
+    const daysHead = 旬首(hourStem);
+    const dunGan = 遁干(daysHead);
+
+    // 地盤干
+    const earthGans = 地盤干(yinOrYangDun, inning);
+
+    // 天盤干
+    const skyGans = 天盤干(earthGans, dunGan, hourGan);
+
+    const [headStar, headCell] = 值符落宮(earthGans, dunGan, hourGan);
+    const [emissaryDoor, emissaryCell] = 值使門(earthGans, yinOrYangDun, dunGan, hourGan);
+
+    // 八神
+    const eightGods = 八神(earthGans, yinOrYangDun, dunGan, hourGan);
+
+    // 九星
+    const nineStars = 九星(earthGans, dunGan, hourGan);
+
+    // 八門
+    const eightDoors = 八門(emissaryDoor, emissaryCell);
+
+    // 天乙
+    const tianYiStar = 天乙(skyGans, nineStars, hourGan);
+
+    // 旺相休囚死
+    const seasonCycle = 旺相休囚死(monthGan);
+
+    // 空亡
+    const voidZhis = 空亡(daysHead);
+
+    // 驛馬
+    const horse = 驛馬(hourZhi);
+
+    const qimenPan: QimenPan = {
+        lunar,
+        八字: [yearStem, monthStem, dayStem, hourStem],
+        上中下元: upperMiddleLowerSector,
+        遁: yinOrYangDun,
+        局數: inning,
+        旬首: daysHead,
+        遁干: dunGan,
+        值符星: headStar,
+        值符落宮: headCell,
+        值使門: emissaryDoor,
+        值使落宮: emissaryCell,
+        空亡: voidZhis,
+        天乙星: tianYiStar,
+        驛馬: horse,
+        節氣: solarTerm,
+        旺相休囚死: seasonCycle,
+        九宮: earthGans.map(
+            (_, index) =>
+                ({
+                    八神: eightGods[index],
+                    九星: nineStars[index],
+                    八門: eightDoors[index],
+                    天盤干: index === nineStars.indexOf("天芮") ? [earthGans[4], skyGans[index]] : skyGans[index] ? [skyGans[index]] : [],
+                    地盤干: index === 1 ? [earthGans[4], earthGans[index]] : [earthGans[index]],
+                    宮位: 宮位飛星序[index],
+                    是否空亡: voidZhis.some(_ => 宮位地支(宮位飛星序[index]).includes(_)),
+                    是否驛馬: 宮位地支(宮位飛星序[index]).includes(horse),
+                } as QimenCell)
+        ),
+    };
+
+    return qimenPan;
+};
+
+const prettyLog = (qimenPan: QimenPan) => {
+    const printCell = (cell: QimenCell) => {
+        return `${cell.天盤干.length ? `${cell.天盤干}+` : ""}${cell.地盤干} ${cell.八神 ?? ""} ${cell.九星 ?? ""} ${cell.八門 ?? ""} ${cell.宮位}${cell.是否空亡 ? " (空)" : ""}${
+            cell.是否驛馬 ? " (馬)" : ""
+        }`;
+    };
+
+    const [年, 月, 日, 時] = qimenPan.八字;
+
+    const 節 = qimenPan.lunar.getPrevJie();
+    const 氣 = qimenPan.lunar.getPrevQi();
+
+    console.log(`${qimenPan.lunar.getSolar().toFullString()}
+${qimenPan.lunar.toString()}日${qimenPan.lunar.getTimeZhi()}時
+${節.getName()} (${節.getSolar().toYmdHms()})
+${氣.getName()} (${氣.getSolar().toYmdHms()})
+${qimenPan.上中下元}${qimenPan.遁}${QimenFormatUtil.中文局數(qimenPan.局數)}局`);
+
+    console.table(
+        [
+            {時: 時[0], 日: 日[0], 月: 月[0], 年: 年[0]},
+            {時: 時[1], 日: 日[1], 月: 月[1], 年: 年[1]},
+        ],
+        ["時", "日", "月", "年"]
+    );
+
+    console.table([
+        [printCell(qimenPan.九宮[3]), printCell(qimenPan.九宮[8]), printCell(qimenPan.九宮[1])],
+        [printCell(qimenPan.九宮[2]), printCell(qimenPan.九宮[4]), printCell(qimenPan.九宮[6])],
+        [printCell(qimenPan.九宮[7]), printCell(qimenPan.九宮[0]), printCell(qimenPan.九宮[5])],
+    ]);
+
+    console.table({
+        值符: `${qimenPan.旬首}${qimenPan.遁干} ${qimenPan.值符星}落${qimenPan.值符落宮}`,
+        值使: `${qimenPan.值使門}落${qimenPan.值使落宮}`,
+        天乙: qimenPan.天乙星,
+    });
+
+    console.table([{旺: qimenPan.旺相休囚死[0], 相: qimenPan.旺相休囚死[1], 休: qimenPan.旺相休囚死[1], 囚: qimenPan.旺相休囚死[1], 死: qimenPan.旺相休囚死[1]}], ["旺", "相", "休", "囚", "死"]);
 };
 
 export const QimenUtil = Object.freeze({
@@ -188,30 +313,10 @@ export const QimenUtil = Object.freeze({
     值符落宮,
     值使門,
     八門,
-    天干測試,
     空亡,
     驛馬,
     天乙,
     旺相休囚死,
+    create,
+    prettyLog,
 });
-
-// calculate() {
-//     const 節氣 = this.目前節氣();
-//     console.log("節氣", 節氣);
-//     const 遁 = QimenCalculator.遁(節氣);
-//     console.log("遁", 遁);
-//     const 局數 = QimenCalculator.局數(節氣, QimenCalculator.上中下元(LunarUtil.日干支(this.lunar)));
-//     console.log("局數", 局數);
-//     const 局名 = QimenFormatUtil.局名(遁, 局數);
-//     console.log("局名", 局名);
-//     const 旬首 = QimenCalculator.旬首(LunarUtil.時干支(this.lunar));
-//     console.log("旬首", 旬首);
-//     const 地盤干 = QimenCalculator.地盤干(遁, 局數);
-//     console.log("地盤干");
-//     QimenCalculator.天干測試(地盤干);
-
-//     const 遁干 = QimenCalculator.遁干(旬首);
-//     const 天盤干 = QimenCalculator.天盤干(地盤干, 遁干, this.lunar.getTimeGan());
-//     console.log("天盤干");
-//     QimenCalculator.天干測試(天盤干);
-// }

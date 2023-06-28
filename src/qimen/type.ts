@@ -1,5 +1,7 @@
 import {JieQi} from "lunar-typescript";
 
+export type 五行 = "木" | "火" | "土" | "金" | "水";
+
 export type 旬首 = "甲子" | "甲寅" | "甲辰" | "甲午" | "甲申" | "甲戌";
 
 export type 上中下元 = "上元" | "中元" | "下元";
@@ -19,7 +21,9 @@ export type 三奇六儀 = 三奇 | 六儀;
 export type 天干 = "甲" | 三奇六儀;
 
 export type 四驛馬 = "申" | "巳" | "亥" | "寅";
+
 export type 四桃花 = "子" | "午" | "卯" | "酉";
+
 export type 四庫 = "辰" | "戌" | "丑" | "未";
 
 export type 地支 = 四驛馬 | 四桃花 | 四庫;

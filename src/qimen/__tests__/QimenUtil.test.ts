@@ -263,4 +263,19 @@ describe("QimenUtil", () => {
         expect(QimenUtil.驛馬("子")).toEqual("寅");
         expect(QimenUtil.驛馬("辰")).toEqual("寅");
     });
+
+    it("旺相休囚死", () => {
+        expect(QimenUtil.旺相休囚死("子")).toEqual(["水", "木", "金", "土", "火"]);
+        expect(QimenUtil.旺相休囚死("丑")).toEqual(["土", "金", "火", "木", "水"]);
+        expect(QimenUtil.旺相休囚死("寅")).toEqual(["木", "火", "水", "金", "土"]);
+        expect(QimenUtil.旺相休囚死("卯")).toEqual(["木", "火", "水", "金", "土"]);
+        expect(QimenUtil.旺相休囚死("辰")).toEqual(["土", "金", "火", "木", "水"]);
+        expect(QimenUtil.旺相休囚死("巳")).toEqual(["火", "土", "木", "水", "金"]);
+        expect(QimenUtil.旺相休囚死("午")).toEqual(["火", "土", "木", "水", "金"]);
+        expect(QimenUtil.旺相休囚死("未")).toEqual(["土", "金", "火", "木", "水"]);
+        expect(QimenUtil.旺相休囚死("申")).toEqual(["金", "水", "土", "火", "木"]);
+        expect(QimenUtil.旺相休囚死("酉")).toEqual(["金", "水", "土", "火", "木"]);
+        expect(QimenUtil.旺相休囚死("戌")).toEqual(["土", "金", "火", "木", "水"]);
+        expect(QimenUtil.旺相休囚死("亥")).toEqual(["水", "木", "金", "土", "火"]);
+    });
 });

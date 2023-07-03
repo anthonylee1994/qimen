@@ -1,23 +1,23 @@
-import {三奇六儀, 上中下元, 六儀, 局數, 旬首, 遁, 節氣, 六十甲子, 天干, 八神, 九星, 八門, 宮位, 地支, 五行, QimenPan, QimenCell, 四驛馬} from "./type";
+import {QimenCell, QimenPan, 三奇六儀, 上中下元, 九星, 五行, 八神, 八門, 六儀, 六十甲子, 四驛馬, 地支, 天干, 宮位, 局數, 旬首, 節氣, 遁} from "./type";
 import {
     三奇六儀序,
+    上中下元表,
+    九星序,
+    八神序,
+    八門序,
+    六儀遁表,
+    天干序,
+    宮位地支表,
+    宮位轉盤序,
+    宮位飛星序,
     局數表,
     旬首表,
+    旺相休囚死表,
+    空亡表,
     節氣遁表,
     轉盤轉飛星序,
-    六儀遁表,
     飛星轉轉盤序,
-    上中下元表,
-    八神序,
-    九星序,
-    八門序,
-    宮位飛星序,
-    天干序,
-    宮位轉盤序,
-    空亡表,
     驛馬表,
-    旺相休囚死表,
-    宮位地支表,
 } from "./dictionary";
 import {Lunar} from "lunar-typescript";
 import {LunarUtil} from "./LunarUtil";
@@ -177,7 +177,7 @@ const 宮位地支 = (宮位: 宮位): 地支[] => {
     return 宮位地支表[宮位];
 };
 
-const create = (lunar: Lunar) => {
+const create = (lunar: Lunar): QimenPan => {
     const [yearStem, monthStem, dayStem, hourStem] = LunarUtil.八字(lunar);
     const monthGan = monthStem[1] as 地支;
 
@@ -224,7 +224,7 @@ const create = (lunar: Lunar) => {
     // 驛馬
     const horse = 驛馬(hourZhi);
 
-    const qimenPan: QimenPan = {
+    return {
         lunar,
         八字: [yearStem, monthStem, dayStem, hourStem],
         上中下元: upperMiddleLowerSector,
@@ -247,16 +247,14 @@ const create = (lunar: Lunar) => {
                     八神: eightGods[index],
                     九星: nineStars[index],
                     八門: eightDoors[index],
-                    天盤干: index === nineStars.indexOf("天芮") ? [earthGans[4], skyGans[index]] : skyGans[index] ? [skyGans[index]] : [],
-                    地盤干: index === 1 ? [earthGans[4], earthGans[index]] : [earthGans[index]],
+                    天盤干: index === nineStars.indexOf("天芮") ? [skyGans[index], earthGans[4]] : skyGans[index] ? [skyGans[index]] : [],
+                    地盤干: index === 1 ? [earthGans[index], earthGans[4]] : [earthGans[index]],
                     宮位: 宮位飛星序[index],
                     是否空亡: voidZhis.some(_ => 宮位地支(宮位飛星序[index]).includes(_)),
                     是否驛馬: 宮位地支(宮位飛星序[index]).includes(horse),
                 } as QimenCell)
         ),
     };
-
-    return qimenPan;
 };
 
 const prettyLog = (qimenPan: QimenPan) => {
@@ -297,7 +295,7 @@ ${qimenPan.上中下元}${qimenPan.遁}${QimenFormatUtil.中文局數(qimenPan.�
         天乙: qimenPan.天乙星,
     });
 
-    console.table([{旺: qimenPan.旺相休囚死[0], 相: qimenPan.旺相休囚死[1], 休: qimenPan.旺相休囚死[1], 囚: qimenPan.旺相休囚死[1], 死: qimenPan.旺相休囚死[1]}], ["旺", "相", "休", "囚", "死"]);
+    console.table([{旺: qimenPan.旺相休囚死[0], 相: qimenPan.旺相休囚死[1], 休: qimenPan.旺相休囚死[2], 囚: qimenPan.旺相休囚死[3], 死: qimenPan.旺相休囚死[4]}], ["旺", "相", "休", "囚", "死"]);
 };
 
 export const QimenUtil = Object.freeze({

@@ -18,7 +18,7 @@ export const Circle = React.memo<Props>(({panSize, children}) => {
             borderRadius="full"
             width={`${panSize / 18}px`}
             height={`${panSize / 18}px`}
-            _first={{mb: 2}}
+            _first={{mb: 1}}
         >
             {children}
         </Text>

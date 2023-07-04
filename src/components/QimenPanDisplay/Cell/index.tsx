@@ -15,12 +15,12 @@ interface Props {
 
 export const Cell = React.memo<Props>(({panSize, cell: {宮位, 九星, 八門, 八神, 天盤干, 地盤干, 是否空亡, 是否驛馬}}) => {
     return (
-        <GridItem fontWeight={500} p={2} display="flex" justifyContent="space-evenly" borderWidth="1px" borderColor="gray.300" w="100%" h={panSize / 3}>
+        <GridItem fontWeight={500} p={1} display="flex" justifyContent="space-evenly" borderWidth="1px" borderColor="gray.300" w="100%" h={panSize / 3}>
             <Flex width={`${panSize / 18}px`} flexDirection="column" justifyContent="flex-end">
                 <Gan panSize={panSize} value={天盤干[1]} />
                 <Gan panSize={panSize} value={地盤干[1]} />
             </Flex>
-            <Flex flexGrow={1} flexDirection="column" alignItems="center" justifyContent="space-evenly">
+            <Flex flexGrow={1} flexDirection="column" alignItems="center" justifyContent="space-between">
                 <God panSize={panSize} value={八神} />
                 <Door panSize={panSize} value={八門} />
                 <Star panSize={panSize} value={九星} />

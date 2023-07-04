@@ -10,29 +10,29 @@ interface Props {
 
 export const Bazi = React.memo<Props>(({panSize, bazi: [年柱, 月柱, 日柱, 時柱]}) => {
     return (
-        <Grid fontSize={panSize / 30} templateColumns="repeat(4, 1fr)">
-            <GridItem w={`${panSize / 25}px`} display="flex" flexDirection="column" alignItems="center">
+        <Grid fontSize={panSize / 25} templateColumns="repeat(4, 1fr)">
+            <GridItem w={`${panSize / 20}px`} display="flex" flexDirection="column" alignItems="center">
                 <Flex color="gray.500" fontSize={panSize / 40}>
                     時
                 </Flex>
                 <Flex color={ColorUtil.天干(時柱[0] as 天干)}>{時柱[0]}</Flex>
                 <Flex color={ColorUtil.地支(時柱[1] as 地支)}>{時柱[1]}</Flex>
             </GridItem>
-            <GridItem w={`${panSize / 25}px`} display="flex" flexDirection="column" alignItems="center">
+            <GridItem w={`${panSize / 20}px`} display="flex" flexDirection="column" alignItems="center">
                 <Flex color="gray.500" fontSize={panSize / 40}>
                     日
                 </Flex>
                 <Flex color={ColorUtil.天干(日柱[0] as 天干)}>{日柱[0]}</Flex>
                 <Flex color={ColorUtil.地支(日柱[1] as 地支)}>{日柱[1]}</Flex>
             </GridItem>
-            <GridItem w={`${panSize / 25}px`} display="flex" flexDirection="column" alignItems="center">
+            <GridItem w={`${panSize / 20}px`} display="flex" flexDirection="column" alignItems="center">
                 <Flex color="gray.500" fontSize={panSize / 40}>
                     月
                 </Flex>
                 <Flex color={ColorUtil.天干(月柱[0] as 天干)}>{月柱[0]}</Flex>
                 <Flex color={ColorUtil.地支(月柱[1] as 地支)}>{月柱[1]}</Flex>
             </GridItem>
-            <GridItem w={`${panSize / 25}px`} display="flex" flexDirection="column" alignItems="center">
+            <GridItem w={`${panSize / 20}px`} display="flex" flexDirection="column" alignItems="center">
                 <Flex color="gray.500" fontSize={panSize / 40}>
                     年
                 </Flex>

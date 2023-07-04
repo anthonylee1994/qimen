@@ -10,7 +10,7 @@ interface Props {
 export const Time = React.memo<Props>(({lunar, panSize}) => {
     return (
         <Text color="gray.700" fontSize={`${panSize / 40}px`}>
-            {lunar.getSolar().toYmd()}&nbsp;
+            {lunar.getSolar().toYmdHms().slice(0, -3)}&nbsp;
             {lunar.getTimeZhi()}時
         </Text>
     );

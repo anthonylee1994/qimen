@@ -38,7 +38,7 @@ export const App = React.memo(() => {
     return (
         <ChakraProvider>
             <Flex h="100vh" justifyContent="center" alignItems="center">
-                <QimenPanDisplay pan={qimenPan} size={700} />
+                <QimenPanDisplay pan={qimenPan} size={300} />
             </Flex>
         </ChakraProvider>
     );

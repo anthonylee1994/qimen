@@ -5,7 +5,7 @@ import {ColorUtil} from "@/qimen/ColorUtil";
 
 interface Props {
     panSize: number;
-    value?: 八神;
+    value: 八神;
 }
 
 export const God = React.memo<Props>(({panSize, value}) => {

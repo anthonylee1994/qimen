@@ -9,7 +9,7 @@ interface Props {
 
 export const Room = React.memo<Props>(({panSize, value}) => {
     return (
-        <Text fontSize={`${panSize / 30}px`} color="gray.300">
+        <Text fontSize={`${panSize / 30}px`} color="gray.500">
             {value || "　"}
         </Text>
     );

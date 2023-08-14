@@ -1,16 +1,10 @@
 {
     "compilerOptions": {
-        "jsx": "react",
         "composite": true,
         "skipLibCheck": true,
         "module": "ESNext",
         "moduleResolution": "bundler",
-        "allowSyntheticDefaultImports": true,
-        "esModuleInterop": true,
-        "paths": {
-            "@/*": ["src/*"]
-        },
-        "baseUrl": "./"
+        "allowSyntheticDefaultImports": true
     },
-    "include": ["vite.config.ts", "src"]
+    "include": ["vite.config.ts"]
 }

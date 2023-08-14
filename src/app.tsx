@@ -2,43 +2,31 @@ import React from "react";
 import {QimenUtil} from "./qimen/QimenUtil";
 import {Lunar} from "lunar-typescript";
 import {ChakraProvider, Flex} from "@chakra-ui/react";
-import {QimenPanDisplay} from "src/components/QimenPanDisplay";
+import {QimenPanDisplay} from "@/component/QimenPanDisplay";
+import {useKeyboardArrow} from "@/hook/useKeyboardArrow";
+import {TwelveDisplay} from "src/component/TwelveDisplay";
+import {AngelDevilUtil, 神煞} from "@/util/AngelDevilUtil";
+import {地支, 天干} from "@/qimen/type";
+import {GodDevilRenderer} from "@/component/GodDevilRenderer";
+import {DatePicker} from "@/component/DatePicker";
+import {TimeTypeDisplay} from "@/component/TimeTypeDisplay";
+import {AstrologicalTimeUtil} from "@/qimen/AstrologicalTimeUtil";
 
 export const App = React.memo(() => {
-    // "1994-04-24T17:25:00"
-    // "2023-06-26T13:25:00"
     const [date, setDate] = React.useState(new Date());
     const qimenPan = QimenUtil.create(Lunar.fromDate(date));
 
-    React.useEffect(() => {
-        const listener = (e: KeyboardEvent) => {
-            if (e.key === "ArrowLeft") {
-                setDate(prev => {
-                    const next = new Date(prev);
-                    // minus two hour
-                    next.setHours(next.getHours() - 2);
-                    return next;
-                });
-            }
-            if (e.key === "ArrowRight") {
-                setDate(prev => {
-                    const next = new Date(prev);
-                    // plus two hour
-                    next.setHours(next.getHours() + 2);
-                    return next;
-                });
-            }
-        };
-        document.addEventListener("keydown", listener);
-        return () => {
-            document.removeEventListener("keydown", listener);
-        };
-    }, []);
+    useKeyboardArrow(setDate);
 
     return (
         <ChakraProvider>
-            <Flex h="100vh" justifyContent="center" alignItems="center">
-                <QimenPanDisplay pan={qimenPan} size={300} />
+            <Flex flexDirection="column" h="100%" justifyContent="space-between" alignItems="center">
+                <DatePicker date={date} setDate={setDate} />
+                <TimeTypeDisplay type={AstrologicalTimeUtil.getType(qimenPan.八字[2][0] as 天干, qimenPan.八字[3][0] as 天干, qimenPan.八字[3][1] as 地支)} />
+                <Flex flexGrow={1} justifyContent="center" alignItems="center">
+                    <TwelveDisplay renderer={items => <GodDevilRenderer items={items as 神煞[]} />} itemsMap={AngelDevilUtil.getAngelDevilMap(qimenPan.八字[3][1] as 地支)} size={310} />
+                    <QimenPanDisplay pan={qimenPan} size={310} />
+                </Flex>
             </Flex>
         </ChakraProvider>
     );

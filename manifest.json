@@ -1,0 +1,21 @@
+{
+    "short_name": "九宮奇門",
+    "name": "九宮奇門",
+    "icons": [
+        {
+            "src": "logo192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "logo512.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "maskable"
+        }
+    ],
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#cbd5e0",
+    "background_color": "#cbd5e0"
+}

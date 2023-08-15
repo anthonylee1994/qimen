@@ -16,7 +16,7 @@ export const Door = React.memo<Props>(({panSize, value, highlight}) => {
             fontSize={`${panSize / 20}px`}
             color={ColorUtil.八門(value)}
             borderColor={highlight ? "pink.300" : undefined}
-            borderWidth={highlight ? 2 : undefined}
+            borderWidth={highlight ? {base: 2, md: 4} : undefined}
             borderRadius="md"
             width={panSize / 8}
         >

@@ -13,7 +13,7 @@ export const GodDevilRenderer = React.memo<Props>(({items}) => {
                 <Flex
                     py={0}
                     px={0.5}
-                    fontSize={{base: 10, sm: "sm", md: "md"}}
+                    fontSize={{base: 10, sm: "sm", md: "md", lg: "xl"}}
                     m={0.5}
                     key={index}
                     bgColor={AngelDevilUtil.isAngel(item as 神煞) ? "red.400" : "gray.500"}

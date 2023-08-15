@@ -16,7 +16,7 @@ export const God = React.memo<Props>(({panSize, value, highlight}) => {
             fontSize={`${panSize / 25}px`}
             color={ColorUtil.八神(value)}
             borderColor={highlight ? "teal.300" : undefined}
-            borderWidth={highlight ? 2 : undefined}
+            borderWidth={highlight ? {base: 2, md: 4} : undefined}
             borderRadius="md"
             width={panSize / 8}
         >

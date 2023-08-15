@@ -15,7 +15,7 @@ export const Gan = React.memo<Props>(({panSize, value, highlight}) => {
             width={`${panSize / 16}px`}
             borderRadius="md"
             borderColor={highlight}
-            borderWidth={highlight ? 2 : 0}
+            borderWidth={highlight ? {base: 2, md: 4} : undefined}
             alignItems="center"
             justifyContent="center"
             fontSize={`${panSize / 25}px`}

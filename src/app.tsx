@@ -15,7 +15,7 @@ import {useScreenWidth} from "@/hook/useScreenWidth";
 
 export const App = React.memo(() => {
     const [date, setDate] = React.useState(new Date());
-    const [ref, screenWidth] = useScreenWidth();
+    const [ref, screenWidth] = useScreenWidth(800);
     const qimenPan = QimenUtil.create(Lunar.fromDate(date));
 
     useKeyboardArrow(setDate);
@@ -25,7 +25,7 @@ export const App = React.memo(() => {
             <Flex ref={ref} flexDirection="column" h="100%" justifyContent="space-between" alignItems="center">
                 <DatePicker date={date} setDate={setDate} />
                 <TimeTypeDisplay type={AstrologicalTimeUtil.getType(qimenPan.八字[2][0] as 天干, qimenPan.八字[3][0] as 天干, qimenPan.八字[3][1] as 地支)} />
-                <Flex flexGrow={1} justifyContent="center" alignItems="center">
+                <Flex my={20} flexGrow={1} justifyContent="center" alignItems="center">
                     <TwelveDisplay renderer={items => <GodDevilRenderer items={items as 神煞[]} />} itemsMap={AngelDevilUtil.getAngelDevilMap(qimenPan.八字[3][1] as 地支)} size={screenWidth * 0.82} />
                     <QimenPanDisplay pan={qimenPan} size={screenWidth * 0.82} />
                 </Flex>

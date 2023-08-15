@@ -10,7 +10,16 @@ export const GodDevilRenderer = React.memo<Props>(({items}) => {
     return (
         <React.Fragment>
             {items.map((item, index) => (
-                <Flex py={0} px={0.5} fontSize={10} m={0.5} key={index} bgColor={AngelDevilUtil.isAngel(item as 神煞) ? "red.400" : "gray.500"} color="white" borderRadius="sm">
+                <Flex
+                    py={0}
+                    px={0.5}
+                    fontSize={{base: 10, sm: "sm", md: "md"}}
+                    m={0.5}
+                    key={index}
+                    bgColor={AngelDevilUtil.isAngel(item as 神煞) ? "red.400" : "gray.500"}
+                    color="white"
+                    borderRadius="sm"
+                >
                     {item}
                 </Flex>
             ))}

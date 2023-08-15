@@ -3,6 +3,7 @@
     "private": true,
     "version": "0.0.0",
     "type": "module",
+    "homepage": "https://qm.9days.io",
     "scripts": {
         "dev": "vite",
         "test": "NODE_ENV=test jest",

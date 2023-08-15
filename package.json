@@ -8,7 +8,8 @@
         "test": "NODE_ENV=test jest",
         "build": "tsc && vite build",
         "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-        "preview": "vite preview"
+        "preview": "vite preview",
+        "deploy": "gh-pages -d dist"
     },
     "dependencies": {
         "@chakra-ui/icons": "^2.1.0",

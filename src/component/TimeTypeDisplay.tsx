@@ -18,7 +18,6 @@ export const TimeTypeDisplay = React.memo<Props>(({type}) => {
             borderBottomWidth={type === null ? 0 : 1}
             borderBottomStyle="dashed"
             fontWeight="bold"
-            fontSize="xs"
             p={1}
         >
             {type || <React.Fragment>&nbsp;</React.Fragment>}

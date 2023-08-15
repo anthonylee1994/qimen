@@ -6,5 +6,5 @@ interface Props extends FlexProps {
 }
 
 export const Vertical = React.memo<Props>(({size, ...restProps}) => {
-    return <Flex flexDirection="column" fontSize="xs" textAlign="center" position="absolute" justifyContent="center" alignItems="center" w={size * 0.1} h={size * 0.33} {...restProps} />;
+    return <Flex flexDirection="column" fontSize="xs" textAlign="center" position="absolute" justifyContent="center" alignItems="center" w={`${size * 0.1}px`} h={`${size * 0.33}px`} {...restProps} />;
 });

@@ -1,10 +1,9 @@
 import React from "react";
 import {Text} from "@chakra-ui/react";
-import {宮位} from "@/qimen/type";
 
 interface Props {
     panSize: number;
-    value: 宮位;
+    value: React.ReactNode;
 }
 
 export const Room = React.memo<Props>(({panSize, value}) => {

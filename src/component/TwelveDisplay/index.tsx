@@ -4,13 +4,13 @@ import {Horizontal} from "@/component/TwelveDisplay/Horizontal";
 import {Vertical} from "@/component/TwelveDisplay/Vertical";
 import {地支} from "@/qimen/type";
 
-interface Props {
-    itemsMap: Record<地支, string[]>;
-    renderer?: (items: string[]) => React.ReactNode;
+interface Props<T extends string> {
+    itemsMap: Record<地支, T[]>;
+    renderer?: (items: T[]) => React.ReactNode;
     size: number;
 }
 
-export const TwelveDisplay = React.memo<Props>(({renderer, itemsMap, size}) => {
+export const TwelveDisplay = <T extends string>({renderer, itemsMap, size}: Props<T>) => {
     return (
         <Flex position="absolute" width={`${size * 1.2}px`} height={`${size * 1.2}px`}>
             <Horizontal size={size} bottom={0} left="50%" transform="translateX(-50%)">
@@ -51,4 +51,4 @@ export const TwelveDisplay = React.memo<Props>(({renderer, itemsMap, size}) => {
             </Horizontal>
         </Flex>
     );
-});
+};

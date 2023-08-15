@@ -18,7 +18,7 @@ export const GodDevilRenderer = React.memo<Props>(({items}) => {
                     key={index}
                     bgColor={AngelDevilUtil.isAngel(item as 神煞) ? "red.400" : "gray.500"}
                     color="white"
-                    borderRadius="sm"
+                    borderRadius={{base: "sm", md: "md"}}
                 >
                     {item}
                 </Flex>

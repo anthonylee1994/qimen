@@ -8,20 +8,21 @@ import {LuckyCellUtil} from "@/util/LuckyCellUtil";
 interface Props {
     pan: QimenPan;
     size: number;
+    isScoreMode: boolean;
 }
 
-export const QimenPanDisplay = React.memo<Props>(({size, pan}) => {
+export const QimenPanDisplay = React.memo<Props>(({size, pan, isScoreMode}) => {
     return (
         <Grid zIndex={1} width={size} templateColumns="repeat(3, 1fr)">
-            <Cell highlight={LuckyCellUtil.isLucky(pan.九宮[3])} cell={pan.九宮[3]} panSize={size} />
-            <Cell highlight={LuckyCellUtil.isLucky(pan.九宮[8])} cell={pan.九宮[8]} panSize={size} />
-            <Cell highlight={LuckyCellUtil.isLucky(pan.九宮[1])} cell={pan.九宮[1]} panSize={size} />
-            <Cell highlight={LuckyCellUtil.isLucky(pan.九宮[2])} cell={pan.九宮[2]} panSize={size} />
+            <Cell isScoreMode={isScoreMode} highlight={LuckyCellUtil.isLucky(pan.九宮[3])} cell={pan.九宮[3]} panSize={size} />
+            <Cell isScoreMode={isScoreMode} highlight={LuckyCellUtil.isLucky(pan.九宮[8])} cell={pan.九宮[8]} panSize={size} />
+            <Cell isScoreMode={isScoreMode} highlight={LuckyCellUtil.isLucky(pan.九宮[1])} cell={pan.九宮[1]} panSize={size} />
+            <Cell isScoreMode={isScoreMode} highlight={LuckyCellUtil.isLucky(pan.九宮[2])} cell={pan.九宮[2]} panSize={size} />
             <BaziCell pan={pan} panSize={size} />
-            <Cell highlight={LuckyCellUtil.isLucky(pan.九宮[6])} cell={pan.九宮[6]} panSize={size} />
-            <Cell highlight={LuckyCellUtil.isLucky(pan.九宮[7])} cell={pan.九宮[7]} panSize={size} />
-            <Cell highlight={LuckyCellUtil.isLucky(pan.九宮[0])} cell={pan.九宮[0]} panSize={size} />
-            <Cell highlight={LuckyCellUtil.isLucky(pan.九宮[5])} cell={pan.九宮[5]} panSize={size} />
+            <Cell isScoreMode={isScoreMode} highlight={LuckyCellUtil.isLucky(pan.九宮[6])} cell={pan.九宮[6]} panSize={size} />
+            <Cell isScoreMode={isScoreMode} highlight={LuckyCellUtil.isLucky(pan.九宮[7])} cell={pan.九宮[7]} panSize={size} />
+            <Cell isScoreMode={isScoreMode} highlight={LuckyCellUtil.isLucky(pan.九宮[0])} cell={pan.九宮[0]} panSize={size} />
+            <Cell isScoreMode={isScoreMode} highlight={LuckyCellUtil.isLucky(pan.九宮[5])} cell={pan.九宮[5]} panSize={size} />
         </Grid>
     );
 });

@@ -19,43 +19,48 @@ interface Props {
 
 export const Cell = React.memo<Props>(({isScoreMode, highlight, panSize, cell: {宮位, 九星, 八門, 八神, 天盤干, 地盤干, 是否空亡, 是否驛馬}}) => {
     return (
-        <GridItem
-            fontWeight={500}
-            p={1}
-            display="flex"
-            justifyContent="space-evenly"
-            borderWidth="1px"
-            borderColor="gray.300"
-            w="100%"
-            h={panSize / 3}
-            boxShadow={highlight ? "md" : undefined}
-            bgColor={highlight ? "yellow.100" : undefined}
-            transform={{
-                base: highlight ? "rotate(-360deg)" : undefined,
+        <div
+            style={{
+                position: "relative",
+                perspective: "1000px",
+                transformStyle: "preserve-3d",
             }}
-            transition="300ms ease-in-out"
         >
-            <Flex width={`${panSize / 18}px`} flexDirection="column" justifyContent="flex-end">
-                <Gan isScoreMode={isScoreMode} panSize={panSize} value={天盤干[1]} highlight={ganHighlight(宮位, 天盤干[1])} />
-                <Gan isScoreMode={isScoreMode} panSize={panSize} value={地盤干[1]} highlight={ganHighlight(宮位, 地盤干[1])} />
-            </Flex>
-            <Flex flexGrow={1} flexDirection="column" alignItems="center" justifyContent="space-between">
-                <God isScoreMode={isScoreMode} highlight={godHighlight(宮位, 八神)} panSize={panSize} value={八神} />
-                <Door isScoreMode={isScoreMode} highlight={doorHighlight(宮位, 八門)} panSize={panSize} value={八門} />
-                <Star isScoreMode={isScoreMode} panSize={panSize} value={九星} />
-                <Room panSize={panSize} value={isScoreMode ? String(ScoreModeUtil.totalScore(八神, 九星, 八門, 天盤干, 地盤干, 是否空亡)) : 宮位} />
-            </Flex>
-            <Flex width={`${panSize / 18}px`} flexDirection="column" justifyContent="space-between" alignItems="center">
-                <Flex flexDirection="column">
-                    {是否空亡 && <Circle panSize={panSize}>空</Circle>}
-                    {是否驛馬 && <Circle panSize={panSize}>馬</Circle>}
+            <GridItem
+                p={1}
+                display="flex"
+                fontWeight={500}
+                justifyContent="space-evenly"
+                borderWidth="1px"
+                borderColor="gray.300"
+                w="100%"
+                h={panSize / 3}
+                bgColor={highlight ? "yellow.100" : undefined}
+                transform={highlight ? "rotateY(-360deg)" : undefined}
+                transition="500ms ease-in-out"
+            >
+                <Flex width={`${panSize / 18}px`} flexDirection="column" justifyContent="flex-end">
+                    <Gan isScoreMode={isScoreMode} panSize={panSize} value={天盤干[1]} highlight={ganHighlight(宮位, 天盤干[1])} />
+                    <Gan isScoreMode={isScoreMode} panSize={panSize} value={地盤干[1]} highlight={ganHighlight(宮位, 地盤干[1])} />
                 </Flex>
-                <Flex flexDirection="column">
-                    <Gan isScoreMode={isScoreMode} panSize={panSize} value={天盤干[0]} highlight={ganHighlight(宮位, 天盤干[0])} />
-                    <Gan isScoreMode={isScoreMode} panSize={panSize} value={地盤干[0]} highlight={ganHighlight(宮位, 地盤干[0])} />
+                <Flex flexGrow={1} flexDirection="column" alignItems="center" justifyContent="space-between">
+                    <God isScoreMode={isScoreMode} highlight={godHighlight(宮位, 八神)} panSize={panSize} value={八神} />
+                    <Door isScoreMode={isScoreMode} highlight={doorHighlight(宮位, 八門)} panSize={panSize} value={八門} />
+                    <Star isScoreMode={isScoreMode} panSize={panSize} value={九星} />
+                    <Room panSize={panSize} value={isScoreMode ? String(ScoreModeUtil.totalScore(八神, 九星, 八門, 天盤干, 地盤干, 是否空亡)) : 宮位} />
                 </Flex>
-            </Flex>
-        </GridItem>
+                <Flex width={`${panSize / 18}px`} flexDirection="column" justifyContent="space-between" alignItems="center">
+                    <Flex flexDirection="column">
+                        {是否空亡 && <Circle panSize={panSize}>空</Circle>}
+                        {是否驛馬 && <Circle panSize={panSize}>馬</Circle>}
+                    </Flex>
+                    <Flex flexDirection="column">
+                        <Gan isScoreMode={isScoreMode} panSize={panSize} value={天盤干[0]} highlight={ganHighlight(宮位, 天盤干[0])} />
+                        <Gan isScoreMode={isScoreMode} panSize={panSize} value={地盤干[0]} highlight={ganHighlight(宮位, 地盤干[0])} />
+                    </Flex>
+                </Flex>
+            </GridItem>
+        </div>
     );
 });
 

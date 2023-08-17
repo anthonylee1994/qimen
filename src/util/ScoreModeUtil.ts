@@ -75,13 +75,8 @@ const totalScore = (god: 八神, star: 九星, door: 八門, tinGan: 天干[], d
         return 0;
     }
 
-    if (tgs.includes("吉")) {
-        total += 10;
-    }
-
-    if (dgs.includes("吉")) {
-        total += 10;
-    }
+    total += (tgs.filter(_ => _ === "吉").length / tgs.length) * 10;
+    total += (dgs.filter(_ => _ === "吉").length / dgs.length) * 10;
 
     return total;
 };

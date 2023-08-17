@@ -11,6 +11,7 @@ import {GodDevilRenderer} from "@/component/GodDevilRenderer";
 import {TopBar} from "@/component/TopBar";
 import {TimeTypeDisplay} from "@/component/TimeTypeDisplay";
 import {useScreenWidth} from "@/hook/useScreenWidth";
+import moment from "moment";
 
 export const App = React.memo(() => {
     const [date, setDate] = React.useState(new Date());
@@ -18,12 +19,18 @@ export const App = React.memo(() => {
     const [ref, screenWidth] = useScreenWidth(800);
     const qimenPan = QimenUtil.create(Lunar.fromDate(date));
 
+    const changeDate = (value: Date) => {
+        if (moment(value).isValid()) {
+            setDate(value);
+        }
+    };
+
     useKeyboardArrow(setDate);
 
     return (
         <ChakraProvider>
             <Flex ref={ref} flexDirection="column" h="100%" justifyContent="space-between" alignItems="center">
-                <TopBar setScoreMode={setScoreMode} isScoreMode={isScoreMode} date={date} setDate={setDate} />
+                <TopBar setScoreMode={setScoreMode} isScoreMode={isScoreMode} date={date} setDate={changeDate} />
                 <TimeTypeDisplay bazi={qimenPan.八字} />
                 <Flex my={20} flexGrow={1} justifyContent="center" alignItems="center">
                     <TwelveDisplay renderer={items => <GodDevilRenderer items={items} />} itemsMap={AngelDevilUtil.getAngelDevilMap(qimenPan.八字[3][1] as 地支)} size={screenWidth * 0.82} />

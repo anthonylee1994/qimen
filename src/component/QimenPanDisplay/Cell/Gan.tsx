@@ -1,4 +1,4 @@
-import {Flex} from "@chakra-ui/react";
+import {Flex, Tooltip} from "@chakra-ui/react";
 import React from "react";
 import {天干} from "@/qimen/type";
 import {ColorUtil} from "@/qimen/ColorUtil";
@@ -8,12 +8,14 @@ interface Props {
     value?: 天干;
     panSize: number;
     isScoreMode: boolean;
+    tooltip?: string;
     highlight?: string;
 }
 
-export const Gan = React.memo<Props>(({panSize, value, highlight, isScoreMode}) => {
+export const Gan = React.memo<Props>(({panSize, value, highlight, isScoreMode, tooltip}) => {
     return (
         <Flex
+            cursor={value ? "pointer" : undefined}
             width={`${panSize / 16}px`}
             borderRadius="md"
             borderColor={highlight}
@@ -23,7 +25,9 @@ export const Gan = React.memo<Props>(({panSize, value, highlight, isScoreMode}) 
             fontSize={`${panSize / 25}px`}
             color={isScoreMode && value ? scoreColor(value) : value ? ColorUtil.天干(value) : undefined}
         >
-            {value || "　"}
+            <Tooltip hasArrow label={tooltip} aria-label={tooltip}>
+                {value || "　"}
+            </Tooltip>
         </Flex>
     );
 });

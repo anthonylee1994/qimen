@@ -3,7 +3,7 @@ import {Flex} from "@chakra-ui/react";
 import {AngelDevilUtil, 神煞} from "@/util/AngelDevilUtil";
 
 interface Props {
-    items: 神煞[];
+    items: (神煞 | "貴人")[];
 }
 
 export const GodDevilRenderer = React.memo<Props>(({items}) => {

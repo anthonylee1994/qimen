@@ -1,8 +1,8 @@
-import {地支} from "@/qimen/type";
+import {地支, 天干} from "@/qimen/type";
 
 export type 神煞 = "咸池" | "驛馬" | "孤辰" | "寡宿" | "將星" | "亡神" | "劫煞" | "災煞" | "白虎" | "華蓋" | "紅鸞" | "天喜";
 
-export const angels: 神煞[] = ["咸池", "驛馬", "將星", "紅鸞", "天喜"];
+export const angels: (神煞 | "貴人")[] = ["咸池", "驛馬", "將星", "紅鸞", "天喜", "貴人"];
 
 export const devils: 神煞[] = ["孤辰", "寡宿", "亡神", "劫煞", "災煞", "白虎", "華蓋"];
 
@@ -177,10 +177,26 @@ export const 神煞表: Record<神煞, Record<地支, 地支>> = {
     },
 };
 
+const 貴人表: Record<天干, 地支[]> = {
+    甲: ["丑", "未"],
+    戊: ["丑", "未"],
+    庚: ["丑", "未"],
+    乙: ["子", "申"],
+    己: ["子", "申"],
+    丙: ["亥", "酉"],
+    丁: ["亥", "酉"],
+    辛: ["午", "寅"],
+    壬: ["卯", "巳"],
+    癸: ["卯", "巳"],
+};
+
 export const AngelDevilUtil = Object.freeze({
-    getAngelDevilMap: (時支: 地支): Record<地支, 神煞[]> => {
-        const angelDevils = Object.keys(神煞表) as 神煞[];
-        const angelDevilOf = (value: 地支) => angelDevils.filter(name => 神煞表[name as 神煞][時支] === value);
+    getAngelDevilMap: (時干: 天干, 時支: 地支): Record<地支, (神煞 | "貴人")[]> => {
+        const angelDevils = Object.keys(神煞表) as (神煞 | "貴人")[];
+
+        const angelDevilOf = (value: 地支): (神煞 | "貴人")[] => {
+            return [...(貴人表[時干].includes(value) ? ["貴人"] : []), ...angelDevils.filter(name => 神煞表[name as 神煞][時支] === value)] as (神煞 | "貴人")[];
+        };
 
         return {
             子: angelDevilOf("子"),

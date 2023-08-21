@@ -9,6 +9,7 @@ import {Star} from "./Star";
 import {Room} from "./Room";
 import {FourDangerUtil} from "@/util/FourDangerUtil";
 import {ScoreModeUtil} from "@/util/ScoreModeUtil";
+import {TwelveCycleUtil} from "@/util/TwelveCycleUtil";
 
 interface Props {
     cell: QimenCell;
@@ -40,8 +41,8 @@ export const Cell = React.memo<Props>(({isScoreMode, highlight, panSize, cell: {
                 transition="500ms ease-in-out"
             >
                 <Flex width={`${panSize / 18}px`} flexDirection="column" justifyContent="flex-end">
-                    <Gan isScoreMode={isScoreMode} panSize={panSize} value={天盤干[1]} highlight={ganHighlight(宮位, 天盤干[1])} />
-                    <Gan isScoreMode={isScoreMode} panSize={panSize} value={地盤干[1]} highlight={ganHighlight(宮位, 地盤干[1])} />
+                    <Gan tooltip={cycleOf(宮位, 天盤干[1])} isScoreMode={isScoreMode} panSize={panSize} value={天盤干[1]} highlight={ganHighlight(宮位, 天盤干[1])} />
+                    <Gan tooltip={cycleOf(宮位, 地盤干[1])} isScoreMode={isScoreMode} panSize={panSize} value={地盤干[1]} highlight={ganHighlight(宮位, 地盤干[1])} />
                 </Flex>
                 <Flex flexGrow={1} flexDirection="column" alignItems="center" justifyContent="space-between">
                     <God isScoreMode={isScoreMode} highlight={godHighlight(宮位, 八神)} panSize={panSize} value={八神} />
@@ -55,14 +56,24 @@ export const Cell = React.memo<Props>(({isScoreMode, highlight, panSize, cell: {
                         {是否驛馬 && <Circle panSize={panSize}>馬</Circle>}
                     </Flex>
                     <Flex flexDirection="column">
-                        <Gan isScoreMode={isScoreMode} panSize={panSize} value={天盤干[0]} highlight={ganHighlight(宮位, 天盤干[0])} />
-                        <Gan isScoreMode={isScoreMode} panSize={panSize} value={地盤干[0]} highlight={ganHighlight(宮位, 地盤干[0])} />
+                        <Gan tooltip={cycleOf(宮位, 天盤干[0])} isScoreMode={isScoreMode} panSize={panSize} value={天盤干[0]} highlight={ganHighlight(宮位, 天盤干[0])} />
+                        <Gan tooltip={cycleOf(宮位, 地盤干[0])} isScoreMode={isScoreMode} panSize={panSize} value={地盤干[0]} highlight={ganHighlight(宮位, 地盤干[0])} />
                     </Flex>
                 </Flex>
             </GridItem>
         </div>
     );
 });
+
+const cycleOf = (room: 宮位, gan?: 天干) => {
+    if (!gan) {
+        return undefined;
+    }
+
+    return TwelveCycleUtil.cellToZhi(room)
+        .map(_ => TwelveCycleUtil.get(gan, _))
+        .join(", ");
+};
 
 const godHighlight = (cell: 宮位, god: 八神) => {
     return cell === "坤二宮" && god === "值符"; // 甲入墓

@@ -16,6 +16,7 @@ import moment from "moment";
 export const App = React.memo(() => {
     const [date, setDate] = React.useState(new Date());
     const [isScoreMode, setScoreMode] = React.useState(false);
+    const [showAngelDevil, setShowAngelDevil] = React.useState(true);
     const [ref, screenWidth] = useScreenWidth(800);
     const qimenPan = QimenUtil.create(Lunar.fromDate(date));
 
@@ -30,15 +31,17 @@ export const App = React.memo(() => {
     return (
         <ChakraProvider>
             <Flex ref={ref} flexDirection="column" h="100%" justifyContent="space-between" alignItems="center">
-                <TopBar setScoreMode={setScoreMode} isScoreMode={isScoreMode} date={date} setDate={changeDate} />
+                <TopBar showAngelDevil={showAngelDevil} setShowAngelDevil={setShowAngelDevil} setScoreMode={setScoreMode} isScoreMode={isScoreMode} date={date} setDate={changeDate} />
                 <TimeTypeDisplay bazi={qimenPan.八字} />
                 <Flex my={20} flexGrow={1} justifyContent="center" alignItems="center">
-                    <TwelveDisplay
-                        renderer={items => <GodDevilRenderer items={items} />}
-                        itemsMap={AngelDevilUtil.getAngelDevilMap(qimenPan.八字[3][0] as 天干, qimenPan.八字[3][1] as 地支)}
-                        size={screenWidth * 0.82}
-                    />
-                    <QimenPanDisplay isScoreMode={isScoreMode} pan={qimenPan} size={screenWidth * 0.82} />
+                    {showAngelDevil && (
+                        <TwelveDisplay
+                            renderer={items => <GodDevilRenderer items={items} />}
+                            itemsMap={AngelDevilUtil.getAngelDevilMap(qimenPan.八字[3][0] as 天干, qimenPan.八字[3][1] as 地支)}
+                            size={screenWidth * 0.82}
+                        />
+                    )}
+                    <QimenPanDisplay isScoreMode={isScoreMode} pan={qimenPan} size={screenWidth * (showAngelDevil ? 0.82 : 0.98)} />
                 </Flex>
             </Flex>
         </ChakraProvider>

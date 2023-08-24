@@ -15,9 +15,9 @@ interface Props {
 export const Gan = React.memo<Props>(({panSize, value, highlight, isScoreMode, tooltip}) => {
     return (
         <Flex
-            cursor={value ? "pointer" : undefined}
+            cursor="pointer"
             width={`${panSize / 16}px`}
-            borderRadius="md"
+            borderRadius={{base: "md", md: "xl"}}
             borderColor={highlight}
             borderWidth={highlight ? {base: 2, md: 4} : undefined}
             alignItems="center"

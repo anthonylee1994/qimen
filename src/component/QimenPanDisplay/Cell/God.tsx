@@ -14,12 +14,13 @@ interface Props {
 export const God = React.memo<Props>(({panSize, value, isScoreMode, highlight}) => {
     return (
         <Flex
+            cursor="pointer"
             justifyContent="center"
             fontSize={`${panSize / 25}px`}
             color={isScoreMode ? scoreColor(value) : ColorUtil.八神(value)}
             borderColor={highlight ? "teal.300" : undefined}
             borderWidth={highlight ? {base: 2, md: 4} : undefined}
-            borderRadius="md"
+            borderRadius={{base: "md", md: "xl"}}
             width={panSize / 8}
         >
             {value || "　"}

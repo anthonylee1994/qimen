@@ -34,8 +34,8 @@ export const Cell = React.memo<Props>(({isScoreMode, highlight, panSize, cell: {
             bgColor={highlight ? "yellow.100" : undefined}
             transition="300ms ease-in-out"
         >
-            <Flex width={`${panSize / 18}px`} flexDirection="column" justifyContent="space-between">
-                <Flex>
+            <Flex position="relative" width={`${panSize / 18}px`} flexDirection="column" justifyContent="flex-end">
+                <Flex position="absolute" top={0} left={0}>
                     {天盤干[1] && 地盤干[0] && <Pattern g1={天盤干[1]} g2={地盤干[0]} panSize={panSize} />}
                     {天盤干[0] && 地盤干[1] && <Pattern g1={天盤干[0]} g2={地盤干[1]} panSize={panSize} />}
                     <Pattern g1={天盤干[0]} g2={地盤干[0]} panSize={panSize} />

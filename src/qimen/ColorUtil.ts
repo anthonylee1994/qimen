@@ -1,4 +1,4 @@
-import {九星, 八神, 八門, 地支, 天干} from "@/qimen/type";
+import type {九星, 八神, 八門, 地支, 天干} from "@/qimen/type";
 
 const colorMap = {
     wood: "green.600",

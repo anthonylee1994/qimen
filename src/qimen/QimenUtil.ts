@@ -1,4 +1,5 @@
-import {QimenCell, QimenPan, 三奇六儀, 上中下元, 九星, 五行, 八神, 八門, 六儀, 六十甲子, 四驛馬, 地支, 天干, 宮位, 局數, 旬首, 節氣, 遁} from "./type";
+import {QimenCell, QimenPan, 三奇六儀} from "./type";
+import type {上中下元, 九星, 五行, 八神, 八門, 六儀, 六十甲子, 四驛馬, 地支, 天干, 宮位, 局數, 旬首, 節氣, 遁} from "./type";
 import {
     三奇六儀序,
     上中下元表,

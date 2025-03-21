@@ -33,7 +33,7 @@ export const App = React.memo(() => {
             <Flex ref={ref} flexDirection="column" h="100%" justifyContent="space-between" alignItems="center">
                 <TopBar showAngelDevil={showAngelDevil} setShowAngelDevil={setShowAngelDevil} setScoreMode={setScoreMode} isScoreMode={isScoreMode} date={date} setDate={changeDate} />
                 <TimeTypeDisplay bazi={qimenPan.八字} />
-                <Flex my={20} flexGrow={1} justifyContent="center" alignItems="center">
+                <Flex flexGrow={1} justifyContent="center" alignItems="center">
                     {showAngelDevil && (
                         <TwelveDisplay
                             renderer={items => <GodDevilRenderer items={items} />}
@@ -41,7 +41,7 @@ export const App = React.memo(() => {
                             size={screenWidth * 0.82}
                         />
                     )}
-                    <QimenPanDisplay isScoreMode={isScoreMode} pan={qimenPan} size={screenWidth * (showAngelDevil ? 0.82 : 0.98)} />
+                    <QimenPanDisplay isScoreMode={isScoreMode} pan={qimenPan} size={screenWidth * (showAngelDevil && screenWidth > 500 ? 0.82 : 0.9)} />
                 </Flex>
             </Flex>
         </ChakraProvider>

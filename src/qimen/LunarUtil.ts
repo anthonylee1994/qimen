@@ -1,5 +1,6 @@
 import {JieQi, Lunar} from "lunar-typescript";
-import {六十甲子, 八字} from "./type";
+import {六十甲子} from "./type";
+import type {八字} from "./type";
 
 const 時干支 = (lunar: Lunar): 六十甲子 => {
     return `${lunar.getTimeGan()}${lunar.getTimeZhi()}` as 六十甲子;

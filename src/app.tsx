@@ -41,7 +41,7 @@ export const App = React.memo(() => {
                             size={screenWidth * 0.82}
                         />
                     )}
-                    <QimenPanDisplay isScoreMode={isScoreMode} pan={qimenPan} size={screenWidth * (showAngelDevil && screenWidth > 500 ? 0.82 : 0.9)} />
+                    <QimenPanDisplay isScoreMode={isScoreMode} pan={qimenPan} size={screenWidth * (showAngelDevil ? 0.82 : 0.9)} />
                 </Flex>
             </Flex>
         </ChakraProvider>

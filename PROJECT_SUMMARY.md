@@ -15,50 +15,43 @@
 
 **位置**：`src/qimen/`
 
-- ✅ **QimenUtil.ts** (322行)
-  - 完整的排盤算法
-  - 16個核心函數
-  - 詳細的內部註釋
-  
-- ✅ **type.ts** (103行)
-  - 完整的 TypeScript 類型定義
-  - 40+ 個類型
-  - 嚴格的類型約束
-  
-- ✅ **dictionary.ts** (125行)
-  - 14個查表數據
-  - 所有必需的對照表
-  - 清晰的數據結構
-  
-- ✅ **LunarUtil.ts** (37行)
-  - 農曆時間處理
-  - 八字計算
-  - 節氣獲取
-  
-- ✅ **FormatUtil.ts** (34行)
-  - 格式化工具
-  - 中文數字轉換
-  - 局名生成
-  
-- ✅ **index.ts** (新增)
-  - 統一導出入口
-  - 完整的類型導出
-  - 方便外部使用
+-   ✅ **QimenUtil.ts** (322 行)
+    -   完整的排盤算法
+    -   16 個核心函數
+    -   詳細的內部註釋
+-   ✅ **type.ts** (103 行)
+    -   完整的 TypeScript 類型定義
+    -   40+ 個類型
+    -   嚴格的類型約束
+-   ✅ **dictionary.ts** (125 行)
+    -   14 個查表數據
+    -   所有必需的對照表
+    -   清晰的數據結構
+-   ✅ **LunarUtil.ts** (37 行)
+    -   農曆時間處理
+    -   八字計算
+    -   節氣獲取
+-   ✅ **FormatUtil.ts** (34 行)
+    -   格式化工具
+    -   中文數字轉換
+    -   局名生成
+-   ✅ **index.ts** (新增)
+    -   統一導出入口
+    -   完整的類型導出
+    -   方便外部使用
 
 ### 2. 測試覆蓋
 
 **位置**：`src/qimen/__tests__/`
 
-- ✅ **QimenUtil.test.ts** (282行)
-  - 18個測試套件
-  - 180+ 個測試案例
-  - 覆蓋所有核心函數
-  
-- ✅ **LunarUtil.test.ts**
-  - 農曆工具測試
-  
-- ✅ **FormatUtil.test.ts**
-  - 格式化工具測試
+-   ✅ **QimenUtil.test.ts** (282 行)
+    -   18 個測試套件
+    -   180+ 個測試案例
+    -   覆蓋所有核心函數
+-   ✅ **LunarUtil.test.ts**
+    -   農曆工具測試
+-   ✅ **FormatUtil.test.ts**
+    -   格式化工具測試
 
 **測試結果**：✅ 所有測試通過 (18 passed, 3 test suites)
 
@@ -66,76 +59,75 @@
 
 #### 核心文檔（新增）
 
-1. ✅ **ALGORITHM.md** (~8000字)
-   - **最重要的文檔**
-   - 完整算法說明
-   - 所有查表數據
-   - 詳細計算步驟
-   - 特殊規則說明
-   - 完整示例
-   - 目標：即使沒有代碼也能重新實現
+1. ✅ **ALGORITHM.md** (~8000 字)
 
-2. ✅ **README.md** (~2000字，已更新)
-   - 項目介紹
-   - 快速開始
-   - API 文檔
-   - 技術棧
-   - 測試覆蓋
-   - 特色說明
-   - 貢獻指南
+    - **最重要的文檔**
+    - 完整算法說明
+    - 所有查表數據
+    - 詳細計算步驟
+    - 特殊規則說明
+    - 完整示例
+    - 目標：即使沒有代碼也能重新實現
 
-3. ✅ **EXAMPLES.md** (~3000字)
-   - 詳細使用示例
-   - API 說明
-   - 實用場景
-   - React Hook 集成
-   - 性能優化
-   - 錯誤處理
+2. ✅ **README.md** (~2000 字，已更新)
 
-4. ✅ **QUICKSTART.md** (~1500字)
-   - 10分鐘快速入門
-   - 基礎用法
-   - 常見問題
-   - 快速鏈接
+    - 項目介紹
+    - 快速開始
+    - API 文檔
+    - 技術棧
+    - 測試覆蓋
+    - 特色說明
+    - 貢獻指南
 
-5. ✅ **REFERENCE.md** (~2000字)
-   - 算法速查表
-   - 排盤流程圖
-   - 核心口訣
-   - 所有序列表
-   - 計算公式
-   - 特殊規則
+3. ✅ **EXAMPLES.md** (~3000 字)
 
-6. ✅ **CONTRIBUTING.md** (~1200字)
-   - 貢獻流程
-   - 代碼規範
-   - 測試要求
-   - 提交規範
-   - 行為準則
+    - 詳細使用示例
+    - API 說明
+    - 實用場景
+    - React Hook 集成
+    - 性能優化
+    - 錯誤處理
+
+4. ✅ **QUICKSTART.md** (~1500 字)
+
+    - 10 分鐘快速入門
+    - 基礎用法
+    - 常見問題
+    - 快速鏈接
+
+5. ✅ **REFERENCE.md** (~2000 字)
+
+    - 算法速查表
+    - 排盤流程圖
+    - 核心口訣
+    - 所有序列表
+    - 計算公式
+    - 特殊規則
+
+6. ✅ **CONTRIBUTING.md** (~1200 字)
+
+    - 貢獻流程
+    - 代碼規範
+    - 測試要求
+    - 提交規範
+    - 行為準則
 
 7. ✅ **DOCS.md**
-   - 文檔導航
-   - 學習路徑
-   - 項目結構
-   - 快速鏈接
+
+    - 文檔導航
+    - 學習路徑
+    - 項目結構
+    - 快速鏈接
 
 8. ✅ **LICENSE**
-   - MIT 開源協議
+    - MIT 開源協議
 
-### 4. 工具腳本
+### 4. 項目配置
 
-- ✅ **src/scripts/validate.ts** (新增)
-  - 排盤驗證腳本
-  - 顏色輸出
-  - 批量驗證
-  - 交互式驗證
-
-### 5. 項目配置
-
-- ✅ **package.json** (已更新)
-  - 完整的項目信息
-  - 新增腳本命令
-  - 關鍵詞和描述
+-   ✅ **package.json** (已更新)
+    -   完整的項目信息
+    -   新增腳本命令
+    -   關鍵詞和描述
 
 ---
 
@@ -157,9 +149,6 @@
 - QimenUtil.test.ts: 282 行
 - 其他測試:          ~100 行
 總計：              ~380 行
-
-工具腳本：
-- validate.ts:       ~230 行
 ```
 
 ### 文檔統計
@@ -191,67 +180,77 @@ DOCS.md:           ~1000 字
 ### 1. 算法完整性
 
 ✅ **完整實現**
-- 包含所有必需的計算步驟
-- 所有查表數據完整
-- 特殊規則處理正確
-- 與傳統手工排盤結果一致
+
+-   包含所有必需的計算步驟
+-   所有查表數據完整
+-   特殊規則處理正確
+-   與傳統手工排盤結果一致
 
 ✅ **嚴格測試**
-- 180+ 測試案例
-- 覆蓋所有陰陽遁組合
-- 驗證所有關鍵計算
-- 所有測試通過
+
+-   180+ 測試案例
+-   覆蓋所有陰陽遁組合
+-   驗證所有關鍵計算
+-   所有測試通過
 
 ### 2. 代碼質量
 
 ✅ **類型安全**
-- 完整的 TypeScript 類型定義
-- 40+ 個精確類型
-- 編譯時類型檢查
+
+-   完整的 TypeScript 類型定義
+-   40+ 個精確類型
+-   編譯時類型檢查
 
 ✅ **可讀性**
-- 使用中文命名（奇門術語）
-- 清晰的函數結構
-- 詳細的註釋說明
+
+-   使用中文命名（奇門術語）
+-   清晰的函數結構
+-   詳細的註釋說明
 
 ✅ **可維護性**
-- 模塊化設計
-- 數據與邏輯分離
-- 單一職責原則
+
+-   模塊化設計
+-   數據與邏輯分離
+-   單一職責原則
 
 ### 3. 文檔完整性
 
 ✅ **多層次文檔**
-- 新手教程（QUICKSTART）
-- 使用示例（EXAMPLES）
-- 算法詳解（ALGORITHM）
-- 速查表（REFERENCE）
-- 貢獻指南（CONTRIBUTING）
+
+-   新手教程（QUICKSTART）
+-   使用示例（EXAMPLES）
+-   算法詳解（ALGORITHM）
+-   速查表（REFERENCE）
+-   貢獻指南（CONTRIBUTING）
 
 ✅ **可傳承性**
-- ALGORITHM.md 包含完整算法
-- 即使沒有代碼也能重新實現
-- 保存所有查表數據
-- 記錄所有特殊規則
+
+-   ALGORITHM.md 包含完整算法
+-   即使沒有代碼也能重新實現
+-   保存所有查表數據
+-   記錄所有特殊規則
 
 ### 4. 使用便利性
 
 ✅ **易用的 API**
+
 ```typescript
-const lunar = Lunar.fromYmdHms(2024, 5, 10, 14, 30, 0)
-const qimenPan = QimenUtil.create(lunar)
-QimenUtil.prettyLog(qimenPan)
+const lunar = Lunar.fromYmdHms(2024, 5, 10, 14, 30, 0);
+const qimenPan = QimenUtil.create(lunar);
+QimenUtil.prettyLog(qimenPan);
 ```
 
 ✅ **統一導出**
+
 ```typescript
-import { QimenUtil, LunarUtil, QimenFormatUtil } from './qimen'
+import {QimenUtil, LunarUtil, QimenFormatUtil} from "./qimen";
 ```
 
 ✅ **完整類型支持**
-- IDE 自動補全
-- 類型提示
-- 錯誤檢查
+
+-   IDE 自動補全
+-   類型提示
+-   錯誤檢查
 
 ---
 
@@ -289,12 +288,6 @@ import { QimenUtil, LunarUtil, QimenFormatUtil } from './qimen'
 ✅ src/qimen/__tests__/FormatUtil.test.ts
 ```
 
-### 工具腳本
-
-```
-✅ src/scripts/validate.ts     驗證腳本（新增）
-```
-
 ### 配置文件
 
 ```
@@ -327,20 +320,20 @@ pnpm build
 ### 使用算法
 
 ```typescript
-import { QimenUtil } from './qimen'
-import { Lunar } from 'lunar-typescript'
+import {QimenUtil} from "./qimen";
+import {Lunar} from "lunar-typescript";
 
 // 創建排盤
-const lunar = Lunar.fromYmdHms(2024, 5, 10, 14, 30, 0)
-const qimenPan = QimenUtil.create(lunar)
+const lunar = Lunar.fromYmdHms(2024, 5, 10, 14, 30, 0);
+const qimenPan = QimenUtil.create(lunar);
 
 // 訪問信息
-console.log(qimenPan.遁)        // "陽遁"
-console.log(qimenPan.局數)      // 4
-console.log(qimenPan.值符星)    // "天柱"
+console.log(qimenPan.遁); // "陽遁"
+console.log(qimenPan.局數); // 4
+console.log(qimenPan.值符星); // "天柱"
 
 // 打印排盤
-QimenUtil.prettyLog(qimenPan)
+QimenUtil.prettyLog(qimenPan);
 ```
 
 ---
@@ -350,7 +343,7 @@ QimenUtil.prettyLog(qimenPan)
 ### 新手用戶
 
 1. **README.md** - 了解項目
-2. **QUICKSTART.md** - 10分鐘上手
+2. **QUICKSTART.md** - 10 分鐘上手
 3. **EXAMPLES.md** - 查看更多示例
 
 ### 算法研究者
@@ -374,28 +367,32 @@ QimenUtil.prettyLog(qimenPan)
 ### 主要目標：保存算法以防失傳
 
 ✅ **完整性**
-- 算法完整實現 ✓
-- 所有查表數據 ✓
-- 特殊規則記錄 ✓
-- 計算步驟詳解 ✓
+
+-   算法完整實現 ✓
+-   所有查表數據 ✓
+-   特殊規則記錄 ✓
+-   計算步驟詳解 ✓
 
 ✅ **可理解性**
-- 清晰的文檔 ✓
-- 詳細的註釋 ✓
-- 完整的示例 ✓
-- 速查表 ✓
+
+-   清晰的文檔 ✓
+-   詳細的註釋 ✓
+-   完整的示例 ✓
+-   速查表 ✓
 
 ✅ **可重現性**
-- 完整的算法說明 ✓
-- 可執行的步驟 ✓
-- 驗證測試 ✓
-- 參考案例 ✓
+
+-   完整的算法說明 ✓
+-   可執行的步驟 ✓
+-   驗證測試 ✓
+-   參考案例 ✓
 
 ✅ **可傳承性**
-- 開源協議 ✓
-- 完整文檔 ✓
-- 貢獻指南 ✓
-- 在線演示 ✓
+
+-   開源協議 ✓
+-   完整文檔 ✓
+-   貢獻指南 ✓
+-   在線演示 ✓
 
 ---
 
@@ -403,24 +400,24 @@ QimenUtil.prettyLog(qimenPan)
 
 ### 對開發者
 
-- ✅ 開箱即用的算法庫
-- ✅ 完整的類型定義
-- ✅ 詳細的使用示例
-- ✅ 穩定的測試覆蓋
+-   ✅ 開箱即用的算法庫
+-   ✅ 完整的類型定義
+-   ✅ 詳細的使用示例
+-   ✅ 穩定的測試覆蓋
 
 ### 對研究者
 
-- ✅ 完整的算法文檔
-- ✅ 所有查表數據
-- ✅ 驗證測試案例
-- ✅ 實現細節說明
+-   ✅ 完整的算法文檔
+-   ✅ 所有查表數據
+-   ✅ 驗證測試案例
+-   ✅ 實現細節說明
 
 ### 對傳承者
 
-- ✅ 可重現的完整算法
-- ✅ 詳細的計算步驟
-- ✅ 特殊規則記錄
-- ✅ 開源可持續
+-   ✅ 可重現的完整算法
+-   ✅ 詳細的計算步驟
+-   ✅ 特殊規則記錄
+-   ✅ 開源可持續
 
 ---
 
@@ -428,9 +425,9 @@ QimenUtil.prettyLog(qimenPan)
 
 本項目成功整理了完整的奇門遁甲排盤算法，並提供了：
 
-1. ✅ **完整實現** - 680行核心代碼
+1. ✅ **完整實現** - 680 行核心代碼
 2. ✅ **嚴格測試** - 180+測試案例
-3. ✅ **詳盡文檔** - 18700字文檔
+3. ✅ **詳盡文檔** - 18700 字文檔
 4. ✅ **工具支持** - 驗證腳本
 5. ✅ **開源協議** - MIT License
 

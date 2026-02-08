@@ -1,14 +1,35 @@
 {
     "name": "qimen",
     "private": true,
-    "version": "0.0.0",
+    "version": "1.0.0",
     "type": "module",
+    "description": "完整的奇門遁甲排盤算法實現與 Web 應用",
     "homepage": "https://qm.9days.io",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/yourusername/qimen.git"
+    },
+    "keywords": [
+        "qimen",
+        "qimen-dunjia",
+        "奇門遁甲",
+        "chinese-metaphysics",
+        "divination",
+        "lunar-calendar",
+        "易學",
+        "術數"
+    ],
+    "author": "Qimen Project",
+    "license": "MIT",
     "scripts": {
         "dev": "vite",
         "test": "NODE_ENV=test jest",
+        "test:watch": "NODE_ENV=test jest --watch",
+        "test:coverage": "NODE_ENV=test jest --coverage",
         "build": "tsc && vite build",
         "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+        "lint:fix": "eslint src --ext ts,tsx --fix",
+        "format": "prettier --write \"src/**/*.{ts,tsx,json,css,md}\"",
         "preview": "vite preview",
         "deploy": "gh-pages -d dist"
     },

@@ -4,7 +4,7 @@
     "version": "1.0.0",
     "type": "module",
     "description": "完整的奇門遁甲排盤算法實現與 Web 應用",
-    "homepage": "https://qm.9days.io",
+    "homepage": "https://qimenpan.vercel.app",
     "repository": {
         "type": "git",
         "url": "https://github.com/yourusername/qimen.git"

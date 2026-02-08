@@ -206,7 +206,7 @@ function QimenPan() {
 -   📚 [完整 API 文檔](./EXAMPLES.md) - 更多使用示例
 -   🧮 [算法詳解](./ALGORITHM.md) - 深入了解排盤算法
 -   🧪 [測試用例](./src/qimen/__tests__/QimenUtil.test.ts) - 查看所有測試
--   🌐 [在線演示](https://qm.9days.io/) - 體驗完整應用
+-   🌐 [在線演示](https://qimenpan.vercel.app/) - 體驗完整應用
 
 ## 常見問題
 

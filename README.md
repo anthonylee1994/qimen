@@ -2,17 +2,17 @@
 
 > 完整的奇門遁甲排盤算法實現與 Web 應用
 
-🔗 **在線體驗**：https://qm.9days.io/
+🔗 **在線體驗**：https://qimenpan.vercel.app/
 
 ## 項目簡介
 
 本項目是一套完整的奇門遁甲排盤系統，包含：
 
-- ✅ 完整的排盤算法實現
-- ✅ 準確的農曆與節氣計算
-- ✅ 現代化的 Web 界面
-- ✅ 詳盡的算法文檔
-- ✅ 完整的單元測試
+-   ✅ 完整的排盤算法實現
+-   ✅ 準確的農曆與節氣計算
+-   ✅ 現代化的 Web 界面
+-   ✅ 詳盡的算法文檔
+-   ✅ 完整的單元測試
 
 ## 核心功能
 
@@ -20,32 +20,32 @@
 
 系統能夠準確計算以下要素：
 
-- **基礎信息**：八字、節氣、陰陽遁、局數
-- **地盤布局**：三奇六儀地盤排列
-- **天盤布局**：天盤干轉動計算
-- **九宮要素**：九星、八門、八神完整排布
-- **輔助信息**：值符、值使、旬首、遁干、空亡、驛馬、天乙星、旺相休囚死
+-   **基礎信息**：八字、節氣、陰陽遁、局數
+-   **地盤布局**：三奇六儀地盤排列
+-   **天盤布局**：天盤干轉動計算
+-   **九宮要素**：九星、八門、八神完整排布
+-   **輔助信息**：值符、值使、旬首、遁干、空亡、驛馬、天乙星、旺相休囚死
 
 ### 使用示例
 
 ```typescript
-import { QimenUtil } from './qimen/QimenUtil'
-import { Lunar } from 'lunar-typescript'
+import {QimenUtil} from "./qimen/QimenUtil";
+import {Lunar} from "lunar-typescript";
 
 // 創建農曆時間對象
-const lunar = Lunar.fromYmdHms(2024, 5, 10, 14, 30, 0)
+const lunar = Lunar.fromYmdHms(2024, 5, 10, 14, 30, 0);
 
 // 生成奇門盤
-const qimenPan = QimenUtil.create(lunar)
+const qimenPan = QimenUtil.create(lunar);
 
 // 打印排盤結果
-QimenUtil.prettyLog(qimenPan)
+QimenUtil.prettyLog(qimenPan);
 
 // 訪問盤面信息
-console.log(qimenPan.遁)        // "陽遁" 或 "陰遁"
-console.log(qimenPan.局數)      // 1-9
-console.log(qimenPan.值符星)    // "天蓬", "天任" 等
-console.log(qimenPan.九宮[0])   // 坎一宮的完整信息
+console.log(qimenPan.遁); // "陽遁" 或 "陰遁"
+console.log(qimenPan.局數); // 1-9
+console.log(qimenPan.值符星); // "天蓬", "天任" 等
+console.log(qimenPan.九宮[0]); // 坎一宮的完整信息
 ```
 
 ### 九宮數據結構
@@ -54,14 +54,14 @@ console.log(qimenPan.九宮[0])   // 坎一宮的完整信息
 
 ```typescript
 interface QimenCell {
-  八神: 八神           // "值符", "騰蛇", "太陰" 等
-  九星: 九星           // "天蓬", "天任", "天冲" 等
-  八門: 八門           // "休門", "生門", "傷門" 等
-  天盤干: 天干[]       // 天盤干支
-  地盤干: 天干[]       // 地盤干支（三奇六儀）
-  宮位: 宮位           // "坎一宮", "坤二宮" 等
-  是否空亡: boolean    // 該宮是否有空亡
-  是否驛馬: boolean    // 該宮是否有驛馬
+    八神: 八神; // "值符", "騰蛇", "太陰" 等
+    九星: 九星; // "天蓬", "天任", "天冲" 等
+    八門: 八門; // "休門", "生門", "傷門" 等
+    天盤干: 天干[]; // 天盤干支
+    地盤干: 天干[]; // 地盤干支（三奇六儀）
+    宮位: 宮位; // "坎一宮", "坤二宮" 等
+    是否空亡: boolean; // 該宮是否有空亡
+    是否驛馬: boolean; // 該宮是否有驛馬
 }
 ```
 
@@ -89,8 +89,8 @@ qimen/
 
 ### 環境要求
 
-- Node.js >= 16
-- pnpm (推薦) 或 npm
+-   Node.js >= 16
+-   pnpm (推薦) 或 npm
 
 ### 安裝依賴
 
@@ -120,11 +120,11 @@ pnpm build
 
 完整的算法說明請查看 [ALGORITHM.md](./ALGORITHM.md)，包含：
 
-- 🔍 **詳細的計算步驟**：每一步都有清晰的說明和代碼示例
-- 📊 **完整的查表數據**：所有需要的對照表
-- 🎯 **特殊規則說明**：中五宮寄宮、甲時規則等
-- 📝 **完整示例**：從輸入到輸出的完整計算過程
-- ✅ **算法驗證**：180+ 測試用例覆蓋
+-   🔍 **詳細的計算步驟**：每一步都有清晰的說明和代碼示例
+-   📊 **完整的查表數據**：所有需要的對照表
+-   🎯 **特殊規則說明**：中五宮寄宮、甲時規則等
+-   📝 **完整示例**：從輸入到輸出的完整計算過程
+-   ✅ **算法驗證**：180+ 測試用例覆蓋
 
 ## API 文檔
 
@@ -135,7 +135,7 @@ QimenUtil = {
   // 主函數
   create(lunar: Lunar): QimenPan           // 生成完整奇門盤
   prettyLog(qimenPan: QimenPan): void     // 控制台打印排盤
-  
+
   // 輔助函數
   陰遁或陽遁(節氣: 節氣): 遁
   上中下元(日干支: 六十甲子): 上中下元
@@ -180,24 +180,24 @@ QimenFormatUtil = {
 
 ## 技術棧
 
-- **核心算法**：TypeScript
-- **前端框架**：React 18
-- **UI 庫**：Chakra UI
-- **農曆計算**：lunar-typescript
-- **構建工具**：Vite
-- **測試框架**：Jest
-- **代碼規範**：ESLint + Prettier
+-   **核心算法**：TypeScript
+-   **前端框架**：React 18
+-   **UI 庫**：Chakra UI
+-   **農曆計算**：lunar-typescript
+-   **構建工具**：Vite
+-   **測試框架**：Jest
+-   **代碼規範**：ESLint + Prettier
 
 ## 測試覆蓋
 
 項目包含完整的單元測試：
 
-- ✅ 18種陰陽遁組合的地盤干測試
-- ✅ 180個天盤干測試案例
-- ✅ 120個八神測試案例  
-- ✅ 90個九星測試案例
-- ✅ 88個八門測試案例
-- ✅ 所有輔助功能測試（空亡、驛馬等）
+-   ✅ 18 種陰陽遁組合的地盤干測試
+-   ✅ 180 個天盤干測試案例
+-   ✅ 120 個八神測試案例
+-   ✅ 90 個九星測試案例
+-   ✅ 88 個八門測試案例
+-   ✅ 所有輔助功能測試（空亡、驛馬等）
 
 查看測試：`src/qimen/__tests__/QimenUtil.test.ts`
 
@@ -205,30 +205,30 @@ QimenFormatUtil = {
 
 ### 1. 算法準確性
 
-- 基於傳統奇門遁甲典籍
-- 經過180+測試用例驗證
-- 與傳統手工排盤結果一致
+-   基於傳統奇門遁甲典籍
+-   經過 180+測試用例驗證
+-   與傳統手工排盤結果一致
 
 ### 2. 代碼質量
 
-- TypeScript 強類型保證
-- 完整的類型定義
-- 清晰的函數命名（使用中文）
-- 詳盡的注釋說明
+-   TypeScript 強類型保證
+-   完整的類型定義
+-   清晰的函數命名（使用中文）
+-   詳盡的注釋說明
 
 ### 3. 可維護性
 
-- 模塊化設計
-- 數據與邏輯分離
-- 完整的文檔
-- 單元測試覆蓋
+-   模塊化設計
+-   數據與邏輯分離
+-   完整的文檔
+-   單元測試覆蓋
 
 ### 4. 使用體驗
 
-- 現代化界面
-- 響應式設計
-- 移動端友好
-- PWA 支持
+-   現代化界面
+-   響應式設計
+-   移動端友好
+-   PWA 支持
 
 ## 貢獻指南
 
@@ -244,10 +244,10 @@ QimenFormatUtil = {
 
 ### 代碼規範
 
-- 使用 TypeScript
-- 遵循 ESLint 規則
-- 添加必要的測試
-- 更新相關文檔
+-   使用 TypeScript
+-   遵循 ESLint 規則
+-   添加必要的測試
+-   更新相關文檔
 
 ## 許可證
 
@@ -255,13 +255,13 @@ QimenFormatUtil = {
 
 ## 致謝
 
-- 感謝 [lunar-typescript](https://github.com/6tail/lunar-typescript) 提供農曆計算支持
-- 感謝所有貢獻者和使用者
+-   感謝 [lunar-typescript](https://github.com/6tail/lunar-typescript) 提供農曆計算支持
+-   感謝所有貢獻者和使用者
 
 ## 聯繫方式
 
-- 項目主頁：https://qm.9days.io/
-- 問題反饋：請在 GitHub Issues 中提交
+-   項目主頁：https://qimenpan.vercel.app/
+-   問題反饋：請在 GitHub Issues 中提交
 
 ---
 
